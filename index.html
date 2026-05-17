@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steel City Visuals — Pittsburgh's Premier Visual Media Team</title>
+  <meta name="description" content="Specialists in brand storytelling, drone imagery, and high-impact real estate marketing. Serving Pittsburgh and surrounding areas." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav__inner">
+
+        <a href="#home" class="nav__logo" aria-label="Steel City Visuals">
+          <img src="assets/images/logo-white.png" alt="Steel City Visuals" />
+        </a>
+
+        <ul class="nav__links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav__cta">
+          <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary">
+            Book Now
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" role="navigation" aria-label="Mobile navigation">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary">Book Now</a>
+  </div>
+
+  <main id="home">
+
+    <!-- ── Hero ── -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" style="background-image: url('assets/images/hero-bg2.jpg');"></div>
+      <div class="hero__overlay"></div>
+
+      <div class="container hero__content">
+
+        <div class="hero__badges reveal">
+          <span class="hero__badge">Next-Day Delivery</span>
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge">Licensed Drone</span>
+          <span class="hero__badge-dot"></span>
+          <span class="hero__badge">3,000+ Shoots</span>
+        </div>
+
+        <h1 class="hero__headline reveal reveal-delay-1">
+          Pittsburgh's Premier<br />
+          <span class="hero__headline-accent">Visual Media Team</span>
+        </h1>
+
+        <p class="hero__sub reveal reveal-delay-2">
+          Specialists in brand storytelling, drone imagery, and high-impact<br class="hero__br" />
+          real estate marketing — delivering results that close deals.
+        </p>
+
+        <div class="hero__ctas reveal reveal-delay-3">
+          <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            Book Real Estate
+            <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#portfolio" class="btn btn-outline btn-lg">View Our Work</a>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- ── Trust Strip ── -->
+    <section class="trust" aria-label="Partner organizations">
+      <div class="trust__label">Trusted by industry leaders</div>
+      <div class="trust__track-wrapper">
+        <div class="trust__track">
+          <img src="assets/images/compass-inc-seeklogo.png"            alt="Compass"                       class="trust__logo" />
+          <img src="assets/images/exp-realty-seeklogo.png"             alt="eXp Realty"                    class="trust__logo" />
+          <img src="assets/images/coldwell-banker-seeklogo.png"        alt="Coldwell Banker"               class="trust__logo trust__logo--tall" />
+          <img src="assets/images/sothebys.png"                        alt="Sotheby's International Realty" class="trust__logo" />
+          <img src="assets/images/Howard-Hanna-Real-Estate-Services-new-logo-298x300-better.webp" alt="Howard Hanna" class="trust__logo trust__logo--tall" />
+          <img src="assets/images/Realty_ONE_Group_Logo_Black_Text.png" alt="Realty ONE Group"             class="trust__logo" />
+          <img src="assets/images/charter-homes-logo.png"              alt="Charter Homes"                 class="trust__logo trust__logo--tall" />
+          <img src="assets/images/HMA_Logo_Color3.png"                 alt="HMA Mortgage"                  class="trust__logo" />
+          <img src="assets/images/tenaris-seeklogo.png"                 alt="Tenaris"                       class="trust__logo" />
+          <img src="assets/images/Coca-Cola-Logo-2.webp"               alt="Abarta Coca-Cola"              class="trust__logo" />
+          <!-- Duplicate set for seamless loop -->
+          <img src="assets/images/compass-inc-seeklogo.png"            alt="Compass"                       class="trust__logo" aria-hidden="true" />
+          <img src="assets/images/exp-realty-seeklogo.png"             alt="eXp Realty"                    class="trust__logo" aria-hidden="true" />
+          <img src="assets/images/coldwell-banker-seeklogo.png"        alt="Coldwell Banker"               class="trust__logo trust__logo--tall" aria-hidden="true" />
+          <img src="assets/images/sothebys.png"                        alt="Sotheby's International Realty" class="trust__logo" aria-hidden="true" />
+          <img src="assets/images/Howard-Hanna-Real-Estate-Services-new-logo-298x300-better.webp" alt="Howard Hanna" class="trust__logo trust__logo--tall" aria-hidden="true" />
+          <img src="assets/images/Realty_ONE_Group_Logo_Black_Text.png" alt="Realty ONE Group"             class="trust__logo" aria-hidden="true" />
+          <img src="assets/images/charter-homes-logo.png"              alt="Charter Homes"                 class="trust__logo trust__logo--tall" aria-hidden="true" />
+          <img src="assets/images/HMA_Logo_Color3.png"                 alt="HMA Mortgage"                  class="trust__logo" aria-hidden="true" />
+          <img src="assets/images/tenaris-seeklogo.png"                 alt="Tenaris"                       class="trust__logo" aria-hidden="true" />
+          <img src="assets/images/Coca-Cola-Logo-2.webp"               alt="Abarta Coca-Cola"              class="trust__logo" aria-hidden="true" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Services ── -->
+    <section class="section services" id="services">
+      <div class="container">
+
+        <div class="services__header reveal">
+          <span class="section-label">What We Do</span>
+          <h2 class="section-title">Services Built for Impact</h2>
+          <p class="section-subtitle">Our team has the experience and specialized skill across photo, video, and drone media to maximize the visual impact of your business, property, or event.</p>
+        </div>
+
+        <!-- Featured card -->
+        <div class="services__featured reveal reveal-delay-1">
+          <div class="services__featured-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M9 21V12h6v9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="services__featured-content">
+            <div class="services__featured-tag">Most Popular</div>
+            <h3 class="services__featured-title">Real Estate Marketing</h3>
+            <p class="services__featured-desc">Visuals that demand attention and convert to fast sales. We deliver next-day photo, video, and drone packages engineered to drive high-interest bids and fast closing times. Pittsburgh's top agents trust us to make their listings stand out.</p>
+            <ul class="services__featured-list">
+              <li>Next-day photo &amp; video delivery</li>
+              <li>Licensed drone stills &amp; video</li>
+              <li>MLS-ready image packages</li>
+              <li>Twilight &amp; aerial shoots</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service grid -->
+        <div class="services__grid">
+
+          <div class="services__card reveal reveal-delay-1">
+            <div class="services__card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="services__card-title">Branding</h3>
+            <p class="services__card-desc">Define your identity with strategic visual assets. We craft cinematic video and campaign photography that builds credibility and drives direct conversions for your business.</p>
+          </div>
+
+          <div class="services__card reveal reveal-delay-2">
+            <div class="services__card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21C12 21 4 14.5 4 9a8 8 0 0116 0c0 5.5-8 12-8 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+              </svg>
+            </div>
+            <h3 class="services__card-title">Premium Wedding Imagery</h3>
+            <p class="services__card-desc">Timeless, elegant, and professional documentation. We capture the genuine emotion and artistry of your day with high-quality photo and film collections.</p>
+          </div>
+
+          <div class="services__card reveal reveal-delay-3">
+            <div class="services__card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2L8 7H4l2 4-4 2 4 2-2 4h4l4 5 4-5h4l-2-4 4-2-4-2 2-4h-4l-4-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="services__card-title">Aerial Drone Photography</h3>
+            <p class="services__card-desc">Unlock unique perspectives with licensed aerial media. High-resolution drone stills and video for construction progress, surveying, and powerful cinematic angles.</p>
+          </div>
+
+          <div class="services__card reveal reveal-delay-4">
+            <div class="services__card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M12 12v3M10.5 13.5h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="services__card-title">Corporate</h3>
+            <p class="services__card-desc">Discreet and high-quality visual coverage. Professional event documentation, executive headshots, and internal marketing video for your organization.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Pricing ── -->
+    <section class="section pricing" id="pricing">
+      <div class="container">
+
+        <div class="pricing__header reveal">
+          <span class="section-label">Pricing</span>
+          <h2 class="section-title">Simple, Transparent Pricing</h2>
+          <p class="section-subtitle">No hidden fees. No surprises. Just great visuals delivered fast.</p>
+        </div>
+
+        <!-- Real Estate block -->
+        <div class="pricing__category reveal">
+          <h3 class="pricing__category-title">Real Estate Marketing</h3>
+        </div>
+
+        <div class="pricing__re-block reveal">
+          <div class="pricing__re-left">
+            <div class="pricing__re-label">How it works</div>
+            <p class="pricing__re-desc">Real estate pricing is tailored to the property — factoring in square footage, location, and the services you need. Enter your listing address in our portal and get an instant, accurate quote in seconds.</p>
+            <ul class="pricing__re-includes">
+              <li>Professionally edited photos</li>
+              <li>Cinematic video walkthrough</li>
+              <li>Licensed drone stills &amp; video</li>
+              <li>Twilight photography</li>
+              <li>Next-day turnaround</li>
+              <li>MLS-ready delivery &amp; online gallery</li>
+            </ul>
+          </div>
+          <div class="pricing__re-right">
+            <div class="pricing__re-cta-label">Ready to book your listing?</div>
+            <div class="pricing__re-cta-sub">Get an instant quote based on your property.</div>
+            <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+              Get an Instant Quote
+              <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <div class="pricing__re-note">No commitment required</div>
+          </div>
+        </div>
+
+        <!-- Other services -->
+        <div class="pricing__category reveal">
+          <h3 class="pricing__category-title">Other Services</h3>
+          <p class="pricing__category-sub">Every project is unique. Prices below are starting points — contact us for a custom quote.</p>
+        </div>
+
+        <div class="pricing__other reveal">
+
+          <div class="pricing__other-card reveal reveal-delay-1">
+            <div class="pricing__other-name">Branding</div>
+            <div class="pricing__other-price">From $250</div>
+            <div class="pricing__other-desc">Headshots &amp; portraits from $250. Social media reels from $450. Documentary bio films from $3,995.</div>
+            <a href="https://portal.steelcityvisuals.com/book/branding/project" target="_blank" rel="noopener" class="pricing__other-link">Book →</a>
+          </div>
+
+          <div class="pricing__other-card reveal reveal-delay-2">
+            <div class="pricing__other-name">Premium Wedding</div>
+            <div class="pricing__other-price">From $2,500</div>
+            <div class="pricing__other-desc">Photo &amp; video packages from 5–10 hours. Combo packages (photo + video) from $6,600 — save up to $1,400.</div>
+            <a href="https://portal.steelcityvisuals.com/book/wedding/project" target="_blank" rel="noopener" class="pricing__other-link">Book →</a>
+          </div>
+
+          <div class="pricing__other-card reveal reveal-delay-3">
+            <div class="pricing__other-name">Aerial Drone</div>
+            <div class="pricing__other-price">Starting at $299</div>
+            <div class="pricing__other-desc">Licensed drone stills &amp; video</div>
+            <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="pricing__other-link">Book →</a>
+          </div>
+
+          <div class="pricing__other-card reveal reveal-delay-4">
+            <div class="pricing__other-name">Corporate</div>
+            <div class="pricing__other-price">Starting at $399</div>
+            <div class="pricing__other-desc">Events, headshots &amp; marketing video</div>
+            <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="pricing__other-link">Book →</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Stats ── -->
+    <section class="stats" id="stats">
+      <div class="container">
+        <div class="stats__grid">
+
+          <div class="stats__item reveal">
+            <div class="stats__number">
+              <span class="stats__count" data-target="3000" data-prefix="+" data-suffix="">0</span>
+            </div>
+            <div class="stats__label">Shoots Accomplished</div>
+            <div class="stats__sub">Since our founding in 2020</div>
+          </div>
+
+          <div class="stats__item reveal reveal-delay-1">
+            <div class="stats__number">
+              <span class="stats__count" data-target="501634" data-prefix="" data-suffix="">0</span>
+            </div>
+            <div class="stats__label">Images Delivered</div>
+            <div class="stats__sub">Across real estate, branding &amp; aerials</div>
+          </div>
+
+          <div class="stats__item reveal reveal-delay-2">
+            <div class="stats__number">
+              <span class="stats__count" data-target="1200" data-prefix="" data-suffix="+">0</span>
+            </div>
+            <div class="stats__label">Drone Flight Hours</div>
+            <div class="stats__sub">Safely logged</div>
+          </div>
+
+          <div class="stats__item reveal reveal-delay-3">
+            <div class="stats__number">
+              <span class="stats__count" data-target="500" data-prefix="" data-suffix="+">0</span>
+            </div>
+            <div class="stats__label">Happy Clients</div>
+            <div class="stats__sub">Across all fields of our business</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── About ── -->
+    <section class="section about" id="about">
+      <div class="container">
+
+        <!-- About SCV split -->
+        <div class="about__split">
+          <div class="about__image-wrap reveal">
+            <img src="assets/images/about-us-bg.jpg" alt="Pittsburgh skyline at golden hour" class="about__image" />
+            <div class="about__image-badge">
+              <span class="about__badge-year">Est.</span>
+              <span class="about__badge-num">2020</span>
+              <span class="about__badge-city">Pittsburgh, PA</span>
+            </div>
+          </div>
+
+          <div class="about__content reveal reveal-delay-1">
+            <span class="section-label">About Us</span>
+            <h2 class="section-title">High quality content.<br />High quality care.</h2>
+            <p class="about__body">At Steel City Visuals, our mission is to capture stories that move people — transforming everyday moments into cinematic experiences. We combine artistry with precision to deliver high-quality photo and video content that elevates brands, empowers clients, and celebrates the authenticity of every project we touch.</p>
+            <p class="about__body">Born and raised in Pittsburgh, we're invested in this city and the people building their businesses here. Every shoot gets our full attention, every client gets our best work.</p>
+            <div class="about__pillars">
+              <div class="about__pillar">
+                <div class="about__pillar-icon">&#9654;</div>
+                <div>
+                  <div class="about__pillar-title">Cinematic Quality</div>
+                  <div class="about__pillar-sub">Every frame is crafted with purpose</div>
+                </div>
+              </div>
+              <div class="about__pillar">
+                <div class="about__pillar-icon">&#9654;</div>
+                <div>
+                  <div class="about__pillar-title">Next-Day Turnaround</div>
+                  <div class="about__pillar-sub">Fast delivery without cutting corners</div>
+                </div>
+              </div>
+              <div class="about__pillar">
+                <div class="about__pillar-icon">&#9654;</div>
+                <div>
+                  <div class="about__pillar-title">Licensed &amp; Insured</div>
+                  <div class="about__pillar-sub">FAA-certified drone operations</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meet the Team -->
+        <div class="team">
+          <div class="team__header reveal">
+            <span class="section-label">The People Behind the Lens</span>
+            <h2 class="section-title">Meet the Team</h2>
+          </div>
+
+          <div class="team__grid">
+
+            <div class="team__card reveal reveal-delay-1">
+              <div class="team__photo-wrap">
+                <img src="assets/images/2024-kyle.png" alt="Kyle Jennings" class="team__photo" />
+              </div>
+              <div class="team__info">
+                <h3 class="team__name">Kyle Jennings</h3>
+                <div class="team__title">CEO &amp; Founder</div>
+                <p class="team__bio">Kyle founded Steel City Visuals in 2020 with a clear vision — bring cinematic-quality visual media to Pittsburgh's businesses and real estate market. With a sharp eye for storytelling and an obsession with the details that close deals, he drives the creative direction behind every SCV project and sets the standard for what great work looks like.</p>
+              </div>
+            </div>
+
+            <div class="team__card reveal reveal-delay-2">
+              <div class="team__photo-wrap">
+                <img src="assets/images/nick.png" alt="Nicholas Colicchie" class="team__photo" />
+              </div>
+              <div class="team__info">
+                <h3 class="team__name">Nicholas Colicchie</h3>
+                <div class="team__title">Director of Real Estate Operations &amp; Human Resources</div>
+                <p class="team__bio">Nicholas is the engine behind SCV's real estate operations, ensuring every listing receives the white-glove experience that agents and sellers expect. His commitment to client relationships and operational excellence has been central to building SCV's reputation as Pittsburgh's most trusted real estate media partner.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Testimonials ── -->
+    <section class="section testimonials" id="testimonials">
+      <div class="container">
+
+        <div class="testimonials__header reveal">
+          <span class="section-label">Client Stories</span>
+          <h2 class="section-title">What Our Clients Say</h2>
+        </div>
+
+        <div class="testimonials__grid">
+
+          <div class="testimonials__card reveal reveal-delay-1">
+            <div class="testimonials__stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <blockquote class="testimonials__quote">
+              "The guys at Steel City Visuals are great. They deliver a high quality product and I always enjoy working with them. They've always been patient and professional and work with me on my specific preferences for listing photos. These boys lend a hand on the shoot and do what it takes to get it done. You won't be disappointed with the end product!"
+            </blockquote>
+            <div class="testimonials__author">
+              <img src="assets/images/Melanie Marsh.jpeg" alt="Melanie Marsh" class="testimonials__avatar" />
+              <div class="testimonials__author-info">
+                <div class="testimonials__name">Melanie Marsh</div>
+                <div class="testimonials__role">Real Estate Professional</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonials__card reveal reveal-delay-2">
+            <div class="testimonials__stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <blockquote class="testimonials__quote">
+              "I've been using Steel City Visuals and working with the entire team for a little over a year now and the attention to detail, willingness to explain their process, and listen to help bring my vision to life is 6/5 stars if I could. Could not recommend more."
+            </blockquote>
+            <div class="testimonials__author">
+              <div class="testimonials__author-info">
+                <div class="testimonials__name">Dylan Jenkins</div>
+                <div class="testimonials__role">Healthcare &amp; Media Professional</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonials__card reveal reveal-delay-3">
+            <div class="testimonials__stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <blockquote class="testimonials__quote">
+              "Did an amazing job with our engagement pictures! They went out to the scene at midnight the day before to ensure the positioning of the shoot was going to work out given active construction. SCV will treat you as if you are a long time friend. Go support a small business!"
+            </blockquote>
+            <div class="testimonials__author">
+              <!-- Add michael-headshot.jpg to assets/images/ to enable avatar -->
+              <div class="testimonials__author-info">
+                <div class="testimonials__name">Michael Ujevich</div>
+                <div class="testimonials__role">Dick's Sporting Goods</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section class="section contact" id="contact">
+      <div class="container">
+
+        <div class="contact__inner">
+
+          <!-- Left: info -->
+          <div class="contact__info reveal">
+            <span class="section-label">Get In Touch</span>
+            <h2 class="section-title">Let's Create Something Great</h2>
+            <p class="contact__intro">Ready to elevate your brand, property, or event? Send us a message and we'll get back to you within one business day.</p>
+
+            <div class="contact__details">
+              <div class="contact__detail">
+                <div class="contact__detail-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact__detail-label">Office</div>
+                  <div class="contact__detail-value">5800 Corporate Drive, Floor 3<br />Suites 307 &amp; 308<br />Pittsburgh, PA 15237</div>
+                </div>
+              </div>
+
+              <div class="contact__detail">
+                <div class="contact__detail-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact__detail-label">Email</div>
+                  <a href="mailto:team@steelcityvisuals.com" class="contact__detail-value contact__detail-link">team@steelcityvisuals.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact__socials">
+              <a href="https://www.linkedin.com/company/steel-city-visuals" target="_blank" rel="noopener" class="contact__social-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2" fill="currentColor"/></svg>
+                LinkedIn
+              </a>
+              <a href="https://www.facebook.com/steelcityvisuals" target="_blank" rel="noopener" class="contact__social-link" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                Facebook
+              </a>
+              <a href="https://www.instagram.com/steelcityvisuals" target="_blank" rel="noopener" class="contact__social-link" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+
+            <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary btn-lg contact__book-btn">
+              Book Real Estate Directly
+              <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right: form -->
+          <div class="contact__form-wrap reveal reveal-delay-2">
+            <!-- Form submission to be wired up later -->
+            <form class="contact__form" novalidate>
+              <div class="contact__form-row">
+                <div class="contact__field">
+                  <label for="first-name" class="contact__label">First Name</label>
+                  <input type="text" id="first-name" name="first-name" class="contact__input" placeholder="John" required />
+                </div>
+                <div class="contact__field">
+                  <label for="last-name" class="contact__label">Last Name</label>
+                  <input type="text" id="last-name" name="last-name" class="contact__input" placeholder="Smith" required />
+                </div>
+              </div>
+
+              <div class="contact__field">
+                <label for="email" class="contact__label">Email</label>
+                <input type="email" id="email" name="email" class="contact__input" placeholder="john@example.com" required />
+              </div>
+
+              <div class="contact__field">
+                <label for="service" class="contact__label">Service</label>
+                <select id="service" name="service" class="contact__input contact__select">
+                  <option value="" disabled selected>What can we help you with?</option>
+                  <option value="real-estate">Real Estate Marketing</option>
+                  <option value="branding">Branding</option>
+                  <option value="wedding">Premium Wedding Imagery</option>
+                  <option value="drone">Aerial Drone Photography</option>
+                  <option value="corporate">Corporate</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="contact__field">
+                <label for="message" class="contact__label">Message</label>
+                <textarea id="message" name="message" class="contact__input contact__textarea" placeholder="Tell us about your project..." rows="5"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg contact__submit">
+                Send Message
+                <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <img src="assets/images/logo-white.png" alt="Steel City Visuals" class="footer__logo" />
+          <p class="footer__tagline">Tomorrow's results start with today.</p>
+          <div class="footer__socials">
+            <a href="https://www.linkedin.com/company/steel-city-visuals" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://www.facebook.com/steelcityvisuals" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/steelcityvisuals" target="_blank" rel="noopener" aria-label="Instagram">&#x25A1;</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Navigate</p>
+          <ul class="footer__links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener">Book Real Estate</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contact">
+          <p class="footer__heading">Contact</p>
+          <p>5800 Corporate Drive</p>
+          <p>Floor 3, Suites 307 &amp; 308</p>
+          <p>Pittsburgh, PA 15237</p>
+          <br />
+          <a href="mailto:team@steelcityvisuals.com">team@steelcityvisuals.com</a>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2025 Steel City Visuals LLC. All rights reserved.</p>
+        <div style="display:flex; gap: var(--space-4);">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Accessibility Statement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+
+</body>
+</html>
