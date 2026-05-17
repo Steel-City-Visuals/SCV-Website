@@ -964,6 +964,21 @@
   line-height: 1.75;
 }
 
+.team__linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-muted);
+  transition: color var(--transition-fast);
+}
+
+.team__linkedin:hover {
+  color: var(--color-accent);
+}
+
 /* About responsive */
 @media (max-width: 1024px) {
   .about__split {
@@ -1301,6 +1316,28 @@
   width: 100%;
   justify-content: center;
   margin-top: var(--space-2);
+}
+
+.contact__success {
+  text-align: center;
+  padding: var(--space-16) var(--space-8);
+  color: var(--color-accent);
+}
+
+.contact__success svg {
+  margin: 0 auto var(--space-4);
+  color: var(--color-accent);
+}
+
+.contact__success h3 {
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.contact__success p {
+  font-size: var(--text-base);
+  color: var(--color-muted);
 }
 
 /* Contact responsive */
