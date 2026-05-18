@@ -138,7 +138,8 @@
 }
 
 .nav__mobile .btn {
-  align-self: flex-start;
+  width: 100%;
+  justify-content: center;
   margin-top: var(--space-2);
 }
 

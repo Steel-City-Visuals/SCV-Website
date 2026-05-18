@@ -699,11 +699,22 @@
 
 @media (max-width: 600px) {
   .pricing__re-block {
-    padding: var(--space-8);
+    padding: var(--space-6);
   }
 
   .pricing__re-includes {
     grid-template-columns: 1fr;
+  }
+
+  .pricing__re-right {
+    padding: var(--space-6);
+  }
+
+  .pricing__re-right .btn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
   }
 }
 
