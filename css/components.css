@@ -386,11 +386,21 @@
   flex-shrink: 0;
 }
 
-/* Service card grid */
+/* Service card grid — 2+3 layout */
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-4);
+}
+
+/* First 2 cards span 3 cols each */
+.services__card:nth-child(-n+2) {
+  grid-column: span 3;
+}
+
+/* Last 3 cards span 2 cols each */
+.services__card:nth-child(n+3) {
+  grid-column: span 2;
 }
 
 .services__card {
@@ -436,6 +446,11 @@
   .services__grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .services__card:nth-child(-n+2),
+  .services__card:nth-child(n+3) {
+    grid-column: span 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -455,6 +470,11 @@
 
   .services__grid {
     grid-template-columns: 1fr;
+  }
+
+  .services__card:nth-child(-n+2),
+  .services__card:nth-child(n+3) {
+    grid-column: span 1;
   }
 }
 
@@ -728,6 +748,58 @@
   .pricing__re-right .btn {
     width: 100%;
     justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* Social Media pricing block */
+.pricing__social {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-12);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  margin-bottom: var(--space-16);
+  align-items: center;
+}
+
+.pricing__social-right {
+  text-align: center;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  min-width: 280px;
+}
+
+@media (max-width: 1024px) {
+  .pricing__social {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing__social-right {
+    min-width: unset;
+  }
+
+  .pricing__social-right .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing__social {
+    padding: var(--space-6);
+  }
+
+  .pricing__social-right {
+    padding: var(--space-6);
+  }
+
+  .pricing__social-right .btn {
     white-space: normal;
     text-align: center;
   }

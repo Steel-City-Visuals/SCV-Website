@@ -7,6 +7,25 @@
 
 [hidden] { display: none !important; }
 
+/* ── Skip Navigation ── */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  background: var(--color-accent);
+  color: #111111;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+.skip-nav:focus {
+  top: var(--space-4);
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
