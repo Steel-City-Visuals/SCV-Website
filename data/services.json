@@ -24,12 +24,6 @@
       "visible": true
     },
     {
-      "id": "wedding",
-      "title": "Premium Wedding Imagery",
-      "description": "Timeless, elegant, and professional documentation. We capture the genuine emotion and artistry of your day with high-quality photo and film collections.",
-      "visible": true
-    },
-    {
       "id": "aerial",
       "title": "Aerial Drone Photography",
       "description": "Unlock unique perspectives with licensed aerial media. High-resolution drone stills and video for construction progress, surveying, and powerful cinematic angles.",
@@ -46,12 +40,6 @@
       "title": "Social Media Marketing",
       "description": "Elevate your brand's online presence with scroll-stopping content. We produce short-form video, reels, and photo assets engineered for engagement across Instagram, LinkedIn, and beyond.",
       "visible": false
-    },
-    {
-      "id": "branding",
-      "title": "test",
-      "description": "test",
-      "visible": true
     }
   ]
 }
