@@ -5,10 +5,10 @@
     "subtitle": "Our team has the experience and specialized skill across photo, video, and drone media to maximize the visual impact of your business, property, or event."
   },
   "featured": {
-    "iconId": "card-3",
+    "iconId": "real-estate",
     "tag": "Most Popular",
-    "title": "Corporate",
-    "description": "Discreet and high-quality visual coverage. Professional event documentation, executive headshots, and internal marketing video for your organization.",
+    "title": "Real Estate Marketing",
+    "description": "Visuals that demand attention and convert to fast sales. We deliver next-day photo, video, and drone packages engineered to drive high-interest bids and fast closing times. Pittsburgh's top agents trust us to make their listings stand out.",
     "includes": [
       "Next-day photo &amp; video delivery",
       "Licensed drone stills &amp; video",
@@ -46,6 +46,12 @@
       "title": "Social Media Marketing",
       "description": "Elevate your brand's online presence with scroll-stopping content. We produce short-form video, reels, and photo assets engineered for engagement across Instagram, LinkedIn, and beyond.",
       "visible": false
+    },
+    {
+      "id": "social-media",
+      "title": "Test",
+      "description": "test",
+      "visible": true
     }
   ]
 }
