@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "title": "Steel City Visuals — Pittsburgh's Premier Visual Media Team",
+    "description": "Specialists in brand storytelling, drone imagery, and high-impact real estate marketing. Serving Pittsburgh and surrounding areas."
+  },
+  "hero": {
+    "backgroundImage": "assets/images/portfolio/aerial/pittsburgh-blue-hour.jpg",
+    "badges": [
+      "Next-Day Delivery",
+      "Licensed Drone",
+      "3,000+ Shoots"
+    ],
+    "headlineLine1": "Pittsburgh's Premier - Test",
+    "headlineAccent": "Visual Media Team",
+    "subheadline": "Specialists in brand storytelling, drone imagery, and high-impact real estate marketing — delivering results that close deals.",
+    "ctaPrimary": {
+      "text": "Book Real Estate",
+      "href": "https://portal.steelcityvisuals.com/book"
+    },
+    "ctaSecondary": {
+      "text": "View Our Work",
+      "href": "portfolio.html"
+    }
+  },
+  "stats": [
+    {
+      "target": 3000,
+      "prefix": "+",
+      "suffix": "",
+      "label": "Shoots Accomplished",
+      "sub": "Since our founding in 2020"
+    },
+    {
+      "target": 501634,
+      "prefix": "",
+      "suffix": "",
+      "label": "Images Delivered",
+      "sub": "Across real estate, branding &amp; aerials"
+    },
+    {
+      "target": 1200,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Drone Flight Hours",
+      "sub": "Safely logged"
+    },
+    {
+      "target": 500,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Happy Clients",
+      "sub": "Across all fields of our business"
+    }
+  ],
+  "about": {
+    "image": "assets/images/site/about-bg.jpg",
+    "imageAlt": "Pittsburgh skyline at golden hour",
+    "headlineLine1": "High quality content.",
+    "headlineLine2": "High quality care.",
+    "body": [
+      "At Steel City Visuals, our mission is to capture stories that move people — transforming everyday moments into cinematic experiences. We combine artistry with precision to deliver high-quality photo and video content that elevates brands, empowers clients, and celebrates the authenticity of every project we touch.",
+      "Born and raised in Pittsburgh, we're invested in this city and the people building their businesses here. Every shoot gets our full attention, every client gets our best work."
+    ],
+    "pillars": [
+      {
+        "title": "Cinematic Quality",
+        "sub": "Every frame is crafted with purpose"
+      },
+      {
+        "title": "Next-Day Turnaround",
+        "sub": "Fast delivery without cutting corners"
+      },
+      {
+        "title": "Licensed &amp; Insured",
+        "sub": "FAA-certified drone operations"
+      }
+    ],
+    "teamLabel": "The People Behind the Lens",
+    "teamTitle": "Meet the Team"
+  },
+  "testimonialsHeader": {
+    "label": "Client Stories",
+    "title": "What Our Clients Say"
+  },
+  "contact": {
+    "label": "Get In Touch",
+    "headline": "Let's Create Something Great",
+    "intro": "Ready to elevate your brand, property, or event? Send us a message and we'll get back to you within one business day.",
+    "address": [
+      "5800 Corporate Drive, Floor 3",
+      "Suites 307 &amp; 308",
+      "Pittsburgh, PA 15237"
+    ],
+    "email": "team@steelcityvisuals.com",
+    "bookingHref": "https://portal.steelcityvisuals.com/book",
+    "formAction": "https://formspree.io/f/xqejzloe",
+    "socials": [
+      {
+        "name": "LinkedIn",
+        "href": "https://www.linkedin.com/company/steel-city-visuals",
+        "label": "LinkedIn"
+      },
+      {
+        "name": "Facebook",
+        "href": "https://www.facebook.com/steelcityvisuals",
+        "label": "Facebook"
+      },
+      {
+        "name": "Instagram",
+        "href": "https://www.instagram.com/steelcityvisuals",
+        "label": "Instagram"
+      }
+    ]
+  },
+  "nav": {
+    "links": [
+      {
+        "label": "Home",
+        "href": "#home"
+      },
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Portfolio",
+        "href": "portfolio.html"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "cta": {
+      "label": "Book Now",
+      "href": "https://portal.steelcityvisuals.com/book"
+    }
+  },
+  "footer": {
+    "tagline": "Tomorrow's results start with today.",
+    "copyright": "&copy; 2025 Steel City Visuals LLC. All rights reserved.",
+    "links": [
+      {
+        "label": "Home",
+        "href": "#home"
+      },
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      },
+      {
+        "label": "Book Real Estate",
+        "href": "https://portal.steelcityvisuals.com/book"
+      }
+    ]
+  }
+}
