@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Steel City Visuals</title>
+  <meta name="description" content="Browse Steel City Visuals' portfolio of real estate, aerial drone, wedding, and corporate photography and video." />
+  <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/portfolio.css" />
+</head>
+<body>
+
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav scrolled" id="nav">
+    <div class="container">
+      <div class="nav__inner">
+
+        <a href="index.html" class="nav__logo" aria-label="Steel City Visuals">
+          <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" />
+        </a>
+
+        <ul class="nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="portfolio.html" class="nav__link--active">Portfolio</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav__cta">
+          <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary">
+            Book Now
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" role="navigation" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary">Book Now</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ── Portfolio Header ── -->
+    <section class="portfolio-hero">
+      <div class="container">
+        <span class="section-label">Our Work</span>
+        <h1 class="portfolio-hero__title">Portfolio</h1>
+        <p class="portfolio-hero__sub">A showcase of our real estate, aerial, wedding, and corporate work across Pittsburgh and beyond.</p>
+      </div>
+    </section>
+
+    <!-- ── Filter Tabs ── -->
+    <div class="portfolio-filters">
+      <div class="container">
+        <div class="portfolio-filters__inner">
+          <button class="portfolio-filter active" data-filter="all">All</button>
+          <button class="portfolio-filter" data-filter="real-estate">Real Estate</button>
+          <button class="portfolio-filter" data-filter="aerial">Aerial</button>
+          <button class="portfolio-filter" data-filter="wedding">Weddings</button>
+          <button class="portfolio-filter" data-filter="corporate">Corporate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Portfolio Grid ── -->
+    <section class="portfolio-grid-section">
+      <div class="container">
+        <div class="portfolio-grid" id="portfolio-grid">
+
+          <!-- Aerial images — add data-category to control filtering -->
+          <!-- Add more images by copying a portfolio-item block -->
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/pittsburgh-blue-hour.jpg"
+                alt="Pittsburgh skyline aerial at blue hour"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Pittsburgh Blue Hour</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/pittsburgh-golden-hour.jpg"
+                alt="Pittsburgh golden hour skyline with bridges"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Pittsburgh Golden Hour</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/pittsburgh-three-rivers.jpg"
+                alt="Pittsburgh three rivers aerial at sunset"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Pittsburgh Three Rivers</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/pittsburgh-from-above.jpg"
+                alt="Pittsburgh aerial drone shot"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Pittsburgh From Above</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/city-of-bridges.jpg"
+                alt="Pittsburgh bridge aerial view"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">City of Bridges</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/bridge-perspective.jpg"
+                alt="Pittsburgh bridge aerial drone photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Bridge Perspective</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/aerial-view.jpg"
+                alt="Aerial drone photography Pittsburgh"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Aerial View</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/morning-fog.jpg"
+                alt="Pittsburgh foggy morning aerial drone shot"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Morning Fog Over Pittsburgh</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/pnc-park.jpg"
+                alt="PNC Park aerial drone photography Pittsburgh"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">PNC Park</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/three-sisters-bridges.jpg"
+                alt="Three Sisters bridges over the Allegheny River aerial view"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Three Sisters Bridges</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/bridge-truss-downtown.jpg"
+                alt="Pittsburgh yellow bridge steel truss with PPG Place in background"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Bridge Truss & Downtown</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/upmc-moonrise.jpg"
+                alt="UPMC tower at night with full moon rising over Pittsburgh"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">UPMC Moonrise</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/downtown-streets-overhead.jpg"
+                alt="Overhead aerial view of Pittsburgh downtown streets at dusk"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Downtown Overhead</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/point-state-park-misty.jpg"
+                alt="Point State Park fountain on a misty morning with Pittsburgh skyline"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Point State Park — Misty Morning</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/point-state-park-autumn.jpg"
+                alt="Point State Park in autumn with fountain and Pittsburgh skyline"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Point State Park — Autumn</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/point-fountain-close.jpg"
+                alt="Close aerial view of Point State Park fountain with fall foliage"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Point Fountain</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="aerial">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/aerial/point-state-park-wide.jpg"
+                alt="Wide aerial view of Point State Park with sun flare and Pittsburgh skyline"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Aerial</div>
+                  <div class="portfolio-item__title">Point State Park — Wide</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="real-estate">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/real-estate/interior-showcase.jpg"
+                alt="Real estate photography interior"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Real Estate</div>
+                  <div class="portfolio-item__title">Interior Showcase</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="real-estate">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/real-estate/property-exterior.jpg"
+                alt="Real estate photography exterior"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Real Estate</div>
+                  <div class="portfolio-item__title">Property Exterior</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Empty state -->
+        <div class="portfolio-empty" id="portfolio-empty" hidden>
+          <p>More work coming soon in this category.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Lightbox ── -->
+  <div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="Image viewer">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="lightbox__arrow lightbox__arrow--prev" id="lightbox-prev" aria-label="Previous image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="lightbox__content">
+      <img src="" alt="" class="lightbox__img" id="lightbox-img" />
+      <div class="lightbox__caption" id="lightbox-caption"></div>
+    </div>
+    <button class="lightbox__arrow lightbox__arrow--next" id="lightbox-next" aria-label="Next image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="lightbox__backdrop" id="lightbox-backdrop" hidden></div>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+
+        <div class="footer__brand">
+          <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="footer__logo" />
+          <p class="footer__tagline">Tomorrow's results start with today.</p>
+          <div class="footer__socials">
+            <a href="https://www.linkedin.com/company/steel-city-visuals" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+            <a href="https://www.facebook.com/steelcityvisuals" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/steelcityvisuals" target="_blank" rel="noopener" aria-label="Instagram">&#x25A1;</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__heading">Navigate</p>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener">Book Real Estate</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contact">
+          <p class="footer__heading">Contact</p>
+          <p>5800 Corporate Drive</p>
+          <p>Floor 3, Suites 307 &amp; 308</p>
+          <p>Pittsburgh, PA 15237</p>
+          <br />
+          <a href="mailto:team@steelcityvisuals.com">team@steelcityvisuals.com</a>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2025 Steel City Visuals LLC. All rights reserved.</p>
+        <div style="display:flex; gap: var(--space-4);">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="accessibility.html">Accessibility Statement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- JS -->
+  <script src="js/nav.js"></script>
+  <script src="js/portfolio.js"></script>
+
+</body>
+</html>
