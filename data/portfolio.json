@@ -20,6 +20,10 @@
     {
       "value": "corporate",
       "label": "Corporate"
+    },
+    {
+      "value": "nick-s-hoe",
+      "label": "Nick's Hoe"
     }
   ],
   "images": [
@@ -27,8 +31,7 @@
       "src": "assets/images/portfolio/aerial/pittsburgh-blue-hour.jpg",
       "alt": "Pittsburgh skyline aerial at blue hour",
       "category": "aerial",
-      "title": "Pittsburgh Blue Hour",
-      "visible": false
+      "title": "Pittsburgh Blue Hour"
     },
     {
       "src": "assets/images/portfolio/aerial/pittsburgh-golden-hour.jpg",
