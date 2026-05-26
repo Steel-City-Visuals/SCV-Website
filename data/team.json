@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Kyle Jennings",
+    "title": "CEO &amp; Founder",
+    "bio": "Kyle founded Steel City Visuals in 2020 with a clear vision — bring cinematic-quality visual media to Pittsburgh's businesses and real estate market. With a sharp eye for storytelling and an obsession with the details that close deals, he drives the creative direction behind every SCV project and sets the standard for what great work looks like.",
+    "photo": "assets/images/team/kyle-jennings.png",
+    "linkedin": "https://www.linkedin.com/in/kyle-scot-jennings/"
+  },
+  {
+    "name": "Nicholas Colicchie",
+    "title": "Real Estate Director, HR Manager",
+    "bio": "Nicholas is the engine behind SCV's real estate operations, ensuring every listing receives the white-glove experience that agents and sellers expect. His commitment to client relationships and operational excellence has been central to building SCV's reputation as Pittsburgh's most trusted real estate media partner.",
+    "photo": "assets/images/team/nick-colicchie.png",
+    "linkedin": "https://www.linkedin.com/in/nicholas-colicchie-24631512b/"
+  },
+  {
+    "name": "Conner Kelly",
+    "title": "Creative Director, Visual Media Producer",
+    "bio": "Conner brings the visual concepts to life. As Creative Director, he shapes the look and feel of every project — from the initial treatment to the final frame. His background in visual media production gives him a hands-on command of both the creative and technical sides of every shoot, ensuring each deliverable is as bold as the story behind it.",
+    "photo": "assets/images/team/conner-kelly.png",
+    "linkedin": "https://www.linkedin.com/in/connerkelly24/"
+  },
+  {
+    "name": "Jessica Mastrean",
+    "title": "Post Production &amp; Motion Graphic Manager",
+    "bio": "Jessica is the talent behind the polish. She oversees all post production workflows and leads motion graphic design, transforming raw footage into refined, broadcast-quality content. Her attention to detail in color, pacing, and animation elevates every SCV project from good to exceptional.",
+    "photo": "assets/images/team/jessica-mastrean.png",
+    "linkedin": "https://www.linkedin.com/in/jessicamastrean/"
+  },
+  {
+    "name": "Jade Fuccaro",
+    "title": "Graphic Design Specialist",
+    "bio": "Jade is SCV's design eye — crafting the visual assets, brand materials, and graphics that keep every client's identity sharp and consistent. From print to digital, she brings a refined aesthetic sensibility that complements SCV's photography and video work with cohesive, on-brand design.",
+    "photo": "assets/images/team/jade-fuccaro.png",
+    "linkedin": "https://www.linkedin.com/in/jadefuccaro/"
+  },
+  {
+    "name": "Kristi Sipes",
+    "title": "Visual Media Producer",
+    "bio": "Kristi is on the ground making every production run smoothly. As a Visual Media Producer, she coordinates shoots, manages logistics, and ensures the creative vision is executed flawlessly on set. Her professionalism and versatility make her an essential part of every SCV production from setup to wrap.",
+    "photo": "assets/images/team/kristi-sipes.png",
+    "linkedin": "https://www.linkedin.com/in/kristisipes/"
+  }
+]

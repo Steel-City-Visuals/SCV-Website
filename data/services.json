@@ -1,0 +1,51 @@
+{
+  "header": {
+    "label": "What We Do",
+    "title": "Services Built for Impact",
+    "subtitle": "Our team has the experience and specialized skill across photo, video, and drone media to maximize the visual impact of your business, property, or event."
+  },
+  "featured": {
+    "iconId": "real-estate",
+    "tag": "Most Popular",
+    "title": "Real Estate Marketing",
+    "description": "Visuals that demand attention and convert to fast sales. We deliver next-day photo, video, and drone packages engineered to drive high-interest bids and fast closing times. Pittsburgh's top agents trust us to make their listings stand out.",
+    "includes": [
+      "Next-day photo &amp; video delivery",
+      "Licensed drone stills &amp; video",
+      "MLS-ready image packages",
+      "Twilight &amp; aerial shoots"
+    ]
+  },
+  "cards": [
+    {
+      "id": "branding",
+      "title": "Branding",
+      "description": "Define your identity with strategic visual assets. We craft cinematic video and campaign photography that builds credibility and drives direct conversions for your business.",
+      "visible": true
+    },
+    {
+      "id": "wedding",
+      "title": "Premium Wedding Imagery",
+      "description": "Timeless, elegant, and professional documentation. We capture the genuine emotion and artistry of your day with high-quality photo and film collections.",
+      "visible": true
+    },
+    {
+      "id": "aerial",
+      "title": "Aerial Drone Photography",
+      "description": "Unlock unique perspectives with licensed aerial media. High-resolution drone stills and video for construction progress, surveying, and powerful cinematic angles.",
+      "visible": true
+    },
+    {
+      "id": "corporate",
+      "title": "Corporate",
+      "description": "Discreet and high-quality visual coverage. Professional event documentation, executive headshots, and internal marketing video for your organization.",
+      "visible": true
+    },
+    {
+      "id": "social-media",
+      "title": "Social Media Marketing",
+      "description": "Elevate your brand's online presence with scroll-stopping content. We produce short-form video, reels, and photo assets engineered for engagement across Instagram, LinkedIn, and beyond.",
+      "visible": false
+    }
+  ]
+}

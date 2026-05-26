@@ -1,0 +1,75 @@
+{
+  "header": {
+    "label": "Pricing",
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "No hidden fees. No surprises. Just great visuals delivered fast."
+  },
+  "realEstate": {
+    "visible": true,
+    "title": "Real Estate Marketing",
+    "label": "How it works",
+    "description": "Real estate pricing is tailored to the property — factoring in square footage, location, and the services you need. Enter your listing address in our portal and get an instant, accurate quote in seconds.",
+    "includes": [
+      "Professionally edited photos",
+      "Cinematic video walkthrough",
+      "Licensed drone stills &amp; video",
+      "Twilight photography",
+      "Next-day turnaround",
+      "MLS-ready delivery &amp; online gallery"
+    ],
+    "ctaLabel": "Ready to book your listing?",
+    "ctaSub": "Get an instant quote based on your property.",
+    "ctaText": "Get an Instant Quote",
+    "ctaHref": "https://portal.steelcityvisuals.com/book",
+    "ctaNote": "No commitment required"
+  },
+  "socialMedia": {
+    "visible": false,
+    "label": "Custom packages",
+    "description": "Social media content is built around your brand, platform, and goals — no two strategies are the same. Whether you need a monthly content package, a one-time campaign, or ongoing short-form video production, we'll scope a plan that fits your business.",
+    "includes": [
+      "Short-form video &amp; reels",
+      "Platform-optimized photo content",
+      "Story &amp; carousel assets",
+      "Brand-consistent editing"
+    ],
+    "ctaLabel": "Ready to grow your presence?",
+    "ctaSub": "Tell us about your brand and we'll put together a custom quote.",
+    "ctaText": "Get a Quote Today",
+    "ctaHref": "#contact"
+  },
+  "otherServices": {
+    "title": "Other Services",
+    "subtitle": "Every project is unique. Prices below are starting points — contact us for a custom quote.",
+    "cards": [
+      {
+        "name": "Branding",
+        "price": "From $250",
+        "description": "Headshots &amp; portraits from $250. Social media reels from $450. Documentary bio films from $3,995.",
+        "linkText": "Book →",
+        "linkHref": "https://portal.steelcityvisuals.com/book/branding/project"
+      },
+      {
+        "name": "Premium Wedding",
+        "price": "From $2,500",
+        "description": "Photo &amp; video packages from 5–10 hours. Combo packages (photo + video) from $6,600 — save up to $1,400.",
+        "linkText": "Book →",
+        "linkHref": "https://portal.steelcityvisuals.com/book/wedding/project"
+      },
+      {
+        "name": "Aerial Drone",
+        "price": "Get a Quote Today",
+        "description": "Licensed drone stills &amp; video",
+        "linkText": "Contact Us →",
+        "linkHref": "index.html#contact"
+      },
+      {
+        "name": "Corporate",
+        "price": "Get a Quote Today",
+        "description": "Events, headshots &amp; marketing video",
+        "linkText": "Contact Us →",
+        "linkHref": "index.html#contact"
+      }
+    ]
+  }
+}

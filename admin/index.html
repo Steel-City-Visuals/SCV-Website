@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — Steel City Visuals</title>
+  <link rel="icon" type="image/png" href="../assets/images/brand/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #c9a84c;
+      --gold-dk: #a8873a;
+      --bg:      #0a0a0a;
+      --surface: #141414;
+      --border:  #2a2a2a;
+      --text:    #f0f0f0;
+      --muted:   #888;
+      --error:   #e05a5a;
+      --success: #4caf82;
+      --radius:  12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+    }
+
+    .logo {
+      display: block;
+      height: 36px;
+      width: auto;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.15s;
+      letter-spacing: 0.03em;
+    }
+
+    input[type="password"]:focus,
+    input[type="text"]:focus {
+      border-color: var(--gold);
+    }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .field-hint a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .field-hint a:hover { text-decoration: underline; }
+
+    .show-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .show-toggle input[type="checkbox"] { accent-color: var(--gold); }
+    .show-toggle span { font-size: 13px; color: var(--muted); }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 28px;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .btn:hover:not(:disabled) { background: var(--gold-dk); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .status {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 16px;
+    }
+
+    .status.error   { display: flex; background: rgba(224,90,90,0.12); color: var(--error);   border: 1px solid rgba(224,90,90,0.25); }
+    .status.success { display: flex; background: rgba(76,175,130,0.12); color: var(--success); border: 1px solid rgba(76,175,130,0.25); }
+
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .steps {
+      list-style: none;
+      margin-bottom: 28px;
+      counter-reset: step;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .steps li:last-child { border-bottom: none; }
+
+    .steps li::before {
+      content: counter(step);
+      min-width: 22px;
+      height: 22px;
+      background: var(--border);
+      color: var(--text);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .steps li a { color: var(--gold); text-decoration: none; }
+    .steps li a:hover { text-decoration: underline; }
+
+    .already-logged-in {
+      display: none;
+      text-align: center;
+    }
+
+    .already-logged-in.visible { display: block; }
+
+    .already-logged-in p { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .already-logged-in a {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--gold);
+      color: #000;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+
+    .logout-link {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      text-decoration: underline;
+    }
+
+    .logout-link:hover { color: var(--error); }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <img src="../assets/images/brand/logo-white.png" alt="Steel City Visuals" class="logo" />
+
+    <!-- Already logged in state -->
+    <div class="already-logged-in" id="already-in">
+      <h1>You're already signed in.</h1>
+      <p>Your session is active. Continue to the admin panel or sign out.</p>
+      <a href="../index.html?mode=admin">Go to Admin Panel</a>
+      <button class="logout-link" id="logout-btn">Sign out and clear session</button>
+    </div>
+
+    <!-- Login form -->
+    <div id="login-form-wrap">
+      <h1>Admin Login</h1>
+      <p class="subtitle">Access is granted via your GitHub Personal Access Token. Your token is only stored locally in your browser session — it's never sent to any server other than GitHub.</p>
+
+      <div class="divider"></div>
+
+      <p style="font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px;">How to get your token</p>
+      <ol class="steps">
+        <li>Go to <a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener">GitHub → Settings → Personal access tokens</a></li>
+        <li>Click <strong style="color:var(--text)">Generate new token (classic)</strong></li>
+        <li>Give it a name like <strong style="color:var(--text)">SCV Admin</strong> and check the <strong style="color:var(--text)">repo</strong> scope</li>
+        <li>Copy the token and paste it below</li>
+      </ol>
+
+      <form id="login-form" autocomplete="off">
+        <label for="token-input">GitHub Personal Access Token</label>
+        <input
+          type="password"
+          id="token-input"
+          placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+          autocomplete="off"
+          spellcheck="false"
+          required
+        />
+        <label class="show-toggle">
+          <input type="checkbox" id="show-token" />
+          <span>Show token</span>
+        </label>
+        <p class="field-hint">
+          Token must have <strong style="color:var(--text)">repo</strong> scope and access to
+          <a href="https://github.com/Steel-City-Visuals/SCV-Website" target="_blank" rel="noopener">Steel-City-Visuals/SCV-Website</a>.
+        </p>
+
+        <button type="submit" class="btn" id="login-btn">
+          Sign In
+        </button>
+
+        <div class="status" id="status-msg"></div>
+      </form>
+    </div>
+
+    <p class="footer-note">You'll stay signed in until you manually sign out.</p>
+  </div>
+
+  <script>
+    const SESSION_KEY = 'scv_admin_token';
+    const REPO_OWNER  = 'Steel-City-Visuals';
+    const REPO_NAME   = 'SCV-Website';
+
+    const alreadyIn   = document.getElementById('already-in');
+    const formWrap    = document.getElementById('login-form-wrap');
+    const form        = document.getElementById('login-form');
+    const tokenInput  = document.getElementById('token-input');
+    const showToggle  = document.getElementById('show-token');
+    const loginBtn    = document.getElementById('login-btn');
+    const statusMsg   = document.getElementById('status-msg');
+    const logoutBtn   = document.getElementById('logout-btn');
+
+    // ── Check for existing session ──────────────────────────────────────────
+    if (localStorage.getItem(SESSION_KEY)) {
+      alreadyIn.classList.add('visible');
+      formWrap.style.display = 'none';
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem(SESSION_KEY);
+      alreadyIn.classList.remove('visible');
+      formWrap.style.display = '';
+    });
+
+    // ── Show/hide token ─────────────────────────────────────────────────────
+    showToggle.addEventListener('change', () => {
+      tokenInput.type = showToggle.checked ? 'text' : 'password';
+    });
+
+    // ── Login ───────────────────────────────────────────────────────────────
+    function setStatus(type, message) {
+      statusMsg.className = `status ${type}`;
+      statusMsg.innerHTML = message;
+    }
+
+    function clearStatus() {
+      statusMsg.className = 'status';
+      statusMsg.textContent = '';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = tokenInput.value.trim();
+      if (!token) return;
+
+      clearStatus();
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<div class="spinner"></div> Verifying…';
+
+      try {
+        // Verify token against the actual repo
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+          }
+        });
+
+        if (res.status === 200) {
+          const data = await res.json();
+          // Confirm write access (not just read)
+          const perms = data.permissions;
+          if (!perms || (!perms.push && !perms.admin)) {
+            setStatus('error',
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg> ' +
+              'Token is valid but has read-only access. Make sure the <strong>repo</strong> scope is checked.'
+            );
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Sign In';
+            return;
+          }
+
+          setStatus('success',
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg> ' +
+            'Access confirmed. Redirecting…'
+          );
+
+          localStorage.setItem(SESSION_KEY, token);
+
+          setTimeout(() => {
+            window.location.href = '../index.html?mode=admin';
+          }, 800);
+
+        } else if (res.status === 401) {
+          setStatus('error',
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg> ' +
+            'Invalid token. Double-check you copied the full token.'
+          );
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Sign In';
+
+        } else if (res.status === 403) {
+          setStatus('error',
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg> ' +
+            'Token doesn\'t have access to this repository.'
+          );
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Sign In';
+
+        } else if (res.status === 404) {
+          setStatus('error',
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg> ' +
+            'Repository not found. The token may not have access to this repo.'
+          );
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Sign In';
+
+        } else {
+          setStatus('error',
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg> ' +
+            `GitHub returned an unexpected response (${res.status}). Try again.`
+          );
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Sign In';
+        }
+
+      } catch (err) {
+        setStatus('error',
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg> ' +
+          'Network error — check your connection and try again.'
+        );
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+      }
+    });
+  </script>
+
+</body>
+</html>

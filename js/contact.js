@@ -1,9 +1,12 @@
 // ── Contact form — AJAX submission via Formspree ──
+// Waits for render.js to inject the form before attaching the handler.
 
-const form    = document.getElementById('contact-form');
-const success = document.getElementById('contact-success');
+function initContact() {
+  const form    = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
 
-if (form) {
+  if (!form) return;
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -33,4 +36,10 @@ if (form) {
       btn.disabled = false;
     }
   });
+}
+
+if (window._scvReady) {
+  initContact();
+} else {
+  document.addEventListener('scv:ready', initContact, { once: true });
 }

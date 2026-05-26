@@ -1,0 +1,12 @@
+[
+  { "name": "Compass",                       "src": "assets/images/partners/compass.png",           "tall": false },
+  { "name": "eXp Realty",                    "src": "assets/images/partners/exp-realty.png",         "tall": false },
+  { "name": "Coldwell Banker",               "src": "assets/images/partners/coldwell-banker.png",    "tall": true  },
+  { "name": "Sotheby's International Realty","src": "assets/images/partners/sothebys.png",           "tall": false },
+  { "name": "Howard Hanna",                  "src": "assets/images/partners/howard-hanna.webp",      "tall": true  },
+  { "name": "Realty ONE Group",              "src": "assets/images/partners/realty-one-group.png",   "tall": false },
+  { "name": "Charter Homes",                 "src": "assets/images/partners/charter-homes.png",      "tall": true  },
+  { "name": "HMA Mortgage",                  "src": "assets/images/partners/hma.png",                "tall": false },
+  { "name": "Tenaris",                       "src": "assets/images/partners/tenaris.png",            "tall": false },
+  { "name": "Abarta Coca-Cola",              "src": "assets/images/partners/coca-cola.webp",         "tall": false }
+]
