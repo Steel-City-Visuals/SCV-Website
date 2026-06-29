@@ -1,6 +1,7 @@
 // ── SCV Blog Admin ──
 
 const REPO        = 'Steel-City-Visuals/SCV-Website';
+const BRANCH      = 'main';
 const POSTS_PATH  = 'blog/posts.json';
 const IMAGES_DIR  = 'assets/images/blog/';
 const PW_HASH     = 'cf2d821917e9fc2be02fc00ad89275440f22a783d63c6dd7552ce5dd08e2deb0';
@@ -100,7 +101,11 @@ function handleTokenSave() {
 function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
 
 async function ghRequest(method, path, body = null) {
-  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+  const url = method === 'GET'
+    ? `https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`
+    : `https://api.github.com/repos/${REPO}/contents/${path}`;
+
+  const res = await fetch(url, {
     method,
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -125,7 +130,7 @@ async function fetchPostsFromGitHub() {
 
 async function savePostsToGitHub(commitMessage) {
   const content = toBase64(JSON.stringify(posts, null, 2));
-  await ghRequest('PUT', POSTS_PATH, { message: commitMessage, content, sha: fileSHA });
+  await ghRequest('PUT', POSTS_PATH, { message: commitMessage, content, sha: fileSHA, branch: BRANCH });
   // Refresh SHA after commit
   const updated = await ghRequest('GET', POSTS_PATH);
   fileSHA = updated.sha;
@@ -145,7 +150,7 @@ async function uploadImage(file) {
           sha = existing.sha;
         } catch {}
 
-        const body = { message: `Upload blog image: ${file.name}`, content: base64 };
+        const body = { message: `Upload blog image: ${file.name}`, content: base64, branch: BRANCH };
         if (sha) body.sha = sha;
         await ghRequest('PUT', path, body);
         resolve(path);
