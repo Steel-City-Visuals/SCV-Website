@@ -1,16 +1,5 @@
 [
   {
-    "slug": "test",
-    "title": "Test",
-    "author": "Chaz",
-    "authorTitle": "Website designer",
-    "date": "2026-06-29",
-    "category": "Real Estate",
-    "excerpt": "Test post",
-    "image": "assets/images/blog/thiel { Software }.png",
-    "body": "test blog post"
-  },
-  {
     "slug": "why-professional-photos-sell-homes-faster",
     "title": "Why Professional Photos Sell Homes Faster (And for More Money)",
     "author": "Nicholas Colicchie",
