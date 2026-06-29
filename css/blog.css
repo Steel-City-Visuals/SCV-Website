@@ -458,6 +458,10 @@
   margin-bottom: var(--space-6);
 }
 
+.post-body-wrap {
+  padding-bottom: var(--space-24);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .blog-grid {
