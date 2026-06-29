@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Steel City Visuals</title>
-  <meta name="description" content="Steel City Visuals privacy policy — how we collect, use, and protect your information." />
+  <title>Blog — Steel City Visuals</title>
+  <meta name="description" content="Steel City Visuals blog post." />
   <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
 
   <!-- Google Fonts -->
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/legal.css" />
+  <link rel="stylesheet" href="css/blog.css" />
 </head>
 <body>
 
@@ -35,7 +35,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="blog.html" class="nav__link--active">Blog</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -71,75 +71,72 @@
   </div>
 
   <main id="main-content">
-    <section class="legal-hero">
-      <div class="container">
-        <span class="section-label">Legal</span>
-        <h1 class="legal-hero__title">Privacy Policy</h1>
-        <p class="legal-hero__meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Steel City Visuals LLC</p>
+
+    <!-- Loading state -->
+    <div id="post-loading" style="min-height:60vh; display:flex; align-items:center; justify-content:center;">
+      <p style="color:var(--color-muted); font-size:var(--text-lg);">Loading post…</p>
+    </div>
+
+    <!-- Not found state -->
+    <div id="post-not-found" hidden style="min-height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; padding: var(--space-16);">
+      <div>
+        <h1 style="font-size:var(--text-4xl); font-weight:900; color:var(--color-text); margin-bottom:var(--space-4);">Post Not Found</h1>
+        <p style="color:var(--color-muted); margin-bottom:var(--space-8);">The post you're looking for doesn't exist or may have been removed.</p>
+        <a href="blog.html" class="btn btn-primary">Back to Blog</a>
       </div>
-    </section>
+    </div>
 
-    <section class="legal-body">
-      <div class="container">
-        <div class="legal-content">
+    <!-- Post content -->
+    <div id="post-content" hidden>
 
-          <p>Steel City Visuals LLC ("we," "us," or "our") is committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights regarding that information.</p>
-
-          <h2>1. Information We Collect</h2>
-          <p>We collect information you voluntarily provide when you:</p>
-          <ul>
-            <li><strong>Submit our contact form</strong> — name, email address, phone number, and message content.</li>
-            <li><strong>Book a service</strong> — booking details collected through our third-party portal (portal.steelcityvisuals.com).</li>
-          </ul>
-          <p>We do not collect any information automatically (e.g., cookies, analytics) through this website.</p>
-
-          <h2>2. How We Use Your Information</h2>
-          <p>Information you provide is used solely to:</p>
-          <ul>
-            <li>Respond to your inquiry or service request.</li>
-            <li>Coordinate and fulfill booked services.</li>
-            <li>Send follow-up communications directly related to your project.</li>
-          </ul>
-          <p>We do not use your information for marketing without your consent, and we do not sell or rent your personal information to any third party.</p>
-
-          <h2>3. Third-Party Services</h2>
-          <p>This website uses the following third-party services that may process data on our behalf:</p>
-          <ul>
-            <li><strong>Formspree</strong> — processes contact form submissions. Submissions are transmitted to Formspree's servers before being forwarded to our email. View <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Formspree's Privacy Policy</a>.</li>
-            <li><strong>Google Fonts</strong> — fonts are loaded from Google's servers, which may log your IP address. View <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
-            <li><strong>GitHub Pages</strong> — this site is hosted on GitHub Pages. GitHub may collect limited server log data. View <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's Privacy Statement</a>.</li>
-          </ul>
-
-          <h2>4. Data Retention</h2>
-          <p>We retain contact form submissions and project-related correspondence for as long as necessary to fulfill the services requested and comply with any legal obligations. You may request deletion of your data at any time by contacting us.</p>
-
-          <h2>5. Your Rights</h2>
-          <p>You have the right to:</p>
-          <ul>
-            <li>Request access to the personal information we hold about you.</li>
-            <li>Request correction or deletion of your information.</li>
-            <li>Withdraw consent for any future communications.</li>
-          </ul>
-          <p>To exercise any of these rights, email us at <a href="mailto:team@steelcityvisuals.com">team@steelcityvisuals.com</a>.</p>
-
-          <h2>6. Children's Privacy</h2>
-          <p>This website is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
-
-          <h2>7. Changes to This Policy</h2>
-          <p>We may update this policy from time to time. When we do, we will update the effective date at the top of this page. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
-
-          <h2>8. Contact</h2>
-          <p>Questions about this policy? Reach us at:</p>
-          <p>
-            Steel City Visuals LLC<br />
-            5800 Corporate Drive, Floor 3, Suites 307 &amp; 308<br />
-            Pittsburgh, PA 15237<br />
-            <a href="mailto:team@steelcityvisuals.com">team@steelcityvisuals.com</a>
-          </p>
-
+      <!-- Hero -->
+      <section class="post-hero">
+        <div class="post-hero__bg" id="post-hero-bg"></div>
+        <div class="post-hero__overlay"></div>
+        <div class="container post-hero__content">
+          <span class="post-hero__category" id="post-category"></span>
+          <h1 class="post-hero__title" id="post-title"></h1>
+          <div class="post-hero__meta">
+            <div class="post-hero__author">
+              <span class="post-hero__author-name" id="post-author-name"></span>
+              <span class="post-hero__author-title" id="post-author-title"></span>
+            </div>
+            <div class="post-hero__divider" aria-hidden="true"></div>
+            <span class="post-hero__date" id="post-date"></span>
+          </div>
         </div>
+      </section>
+
+      <!-- Body -->
+      <div class="container">
+        <a href="blog.html" class="post-back">
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M13 7H1M6 2L1 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Blog
+        </a>
+
+        <article class="post-body" id="post-body"></article>
+
+        <!-- CTA -->
+        <div class="post-cta">
+          <h3>Ready to Work with Us?</h3>
+          <p>Let's create something great together. Reach out or book directly online.</p>
+          <div style="display:flex; gap:var(--space-4); justify-content:center; flex-wrap:wrap;">
+            <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary">
+              Book Now
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="index.html#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+
       </div>
-    </section>
+
+    </div>
+
   </main>
 
   <!-- ── Footer ── -->
@@ -168,8 +165,8 @@
           <ul class="footer__links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#services">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="index.html#about">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="index.html#contact">Contact</a></li>
             <li><a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener">Book Real Estate</a></li>
           </ul>
@@ -192,6 +189,7 @@
           <a href="privacy.html">Privacy Policy</a>
           <a href="accessibility.html">Accessibility Statement</a>
         </div>
+        <p style="font-size:var(--text-xs); color:rgba(255,255,255,0.35); margin-top:var(--space-2);">Designed &amp; built by <a href="https://www.thielsoftware.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5); text-decoration:none;">Chase Thiel</a></p>
       </div>
     </div>
   </footer>
@@ -205,6 +203,7 @@
 
   <!-- JS -->
   <script src="js/nav.js"></script>
+  <script src="js/blog-post.js"></script>
 
 </body>
 </html>
