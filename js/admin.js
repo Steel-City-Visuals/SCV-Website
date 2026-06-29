@@ -1,7 +1,7 @@
 // ── SCV Blog Admin ──
 
 const REPO        = 'Steel-City-Visuals/SCV-Website';
-const BRANCH      = 'main';
+const BRANCH      = 'Blog';
 const POSTS_PATH  = 'blog/posts.json';
 const IMAGES_DIR  = 'assets/images/blog/';
 const PW_HASH     = 'cf2d821917e9fc2be02fc00ad89275440f22a783d63c6dd7552ce5dd08e2deb0';
