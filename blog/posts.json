@@ -1,5 +1,16 @@
 [
   {
+    "slug": "test",
+    "title": "Test",
+    "author": "Chaz",
+    "authorTitle": "Website designer",
+    "date": "2026-07-06",
+    "category": "Behind the Scenes",
+    "excerpt": "Baby boy.",
+    "image": "assets/images/blog/thiel { Software }.png",
+    "body": "Test nick is a beautiful baby boy."
+  },
+  {
     "slug": "why-professional-photos-sell-homes-faster",
     "title": "Why Professional Photos Sell Homes Faster (And for More Money)",
     "author": "Nicholas Colicchie",
