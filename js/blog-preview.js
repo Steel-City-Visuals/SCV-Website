@@ -43,9 +43,10 @@ if (grid) {
   fetch(POSTS_URL)
     .then(r => r.json())
     .then(posts => {
-      if (!posts.length) { section.hidden = true; return; }
+      const published = posts.filter(p => p.published !== false);
+      if (!published.length) { section.hidden = true; return; }
 
-      const latest = [...posts]
+      const latest = [...published]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, 3);
 

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/admin.css?v=13" />
 </head>
 <body>
 
@@ -92,7 +92,16 @@
       <div id="list-content" hidden>
         <div class="admin-titlebar">
           <h2>Posts <span id="post-count"></span></h2>
-          <button class="btn btn-primary" onclick="showPostForm(null)">+ New Post</button>
+          <div class="admin-titlebar__right">
+            <div class="post-search-wrap">
+              <svg class="post-search__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <input type="search" id="post-search" class="post-search__input" placeholder="Search posts…" autocomplete="off" />
+            </div>
+            <button class="btn btn-primary" onclick="showPostForm(null)">+ New Post</button>
+          </div>
         </div>
         <div class="post-list" id="post-list"></div>
       </div>
@@ -166,8 +175,9 @@
 
                 <div class="editor-sep"></div>
 
-                <button class="toolbar-btn" data-cmd="createLink" title="Insert link" type="button">Link</button>
-                <button class="toolbar-btn" data-cmd="unlink"     title="Remove link" type="button">Unlink</button>
+                <button class="toolbar-btn" data-cmd="createLink"  title="Insert link"  type="button">Link</button>
+                <button class="toolbar-btn" data-cmd="unlink"      title="Remove link"  type="button">Unlink</button>
+                <button class="toolbar-btn" data-cmd="insertImage" title="Insert image" type="button">Img</button>
 
                 <div class="editor-sep"></div>
 
@@ -184,6 +194,9 @@
                 aria-label="Post body"
               ></div>
             </div>
+            <div class="editor-meta">
+              <span id="editor-word-count" class="editor-word-count">0 words</span>
+            </div>
           </div>
 
         </div>
@@ -193,13 +206,28 @@
 
           <!-- Publish -->
           <div class="publish-bar">
-            <span class="publish-bar__status" id="publish-status"></span>
-            <button class="btn btn-primary" id="publish-btn">
-              Publish
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <div class="publish-bar__top">
+              <span class="publish-bar__label">Status</span>
+              <span class="publish-bar__status" id="publish-status"></span>
+              <span class="publish-bar__live" id="publish-live" style="display:none;">
+                <span class="live-dot"></span> Live &mdash; <a id="view-post-link" href="#" target="_blank" rel="noopener noreferrer">View Post</a>
+              </span>
+            </div>
+            <div class="publish-bar__buttons">
+              <button class="btn btn-outline publish-bar__btn" id="draft-btn">Save Draft</button>
+              <button class="btn btn-primary publish-bar__btn" id="publish-btn">
+                Publish
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <a id="preview-btn" href="#" target="_blank" rel="noopener noreferrer" class="publish-bar__preview-link" style="display:none;">
+              Preview post
+              <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M6 2H2a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V8M9 1h4m0 0v4m0-4L6 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
+            </a>
           </div>
 
           <!-- Post Details -->
@@ -232,6 +260,23 @@
             </div>
           </div>
 
+          <!-- SEO -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">SEO</div>
+            <div class="form-field">
+              <label for="f-meta-desc">Meta Description</label>
+              <div class="char-count-wrap">
+                <textarea id="f-meta-desc" rows="3" placeholder="Short description for search engines (recommended: 150–160 chars)…" maxlength="160"></textarea>
+                <span class="char-count" id="meta-desc-count">0/160</span>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="f-og-image">OG Image Path</label>
+              <input type="text" id="f-og-image" placeholder="Defaults to featured image if blank" />
+              <span class="form-field__hint">Override the social share image.</span>
+            </div>
+          </div>
+
           <!-- Featured Image -->
           <div class="sidebar-card">
             <div class="sidebar-card__title">Featured Image</div>
@@ -251,6 +296,10 @@
                 <input type="text" id="f-image-path" placeholder="assets/images/blog/my-image.jpg" />
                 <span class="form-field__hint">Auto-filled on upload, or type a path manually.</span>
               </div>
+              <div class="form-field">
+                <label for="f-image-alt">Alt Text</label>
+                <input type="text" id="f-image-alt" placeholder="Describe the image for accessibility…" />
+              </div>
             </div>
           </div>
 
@@ -258,6 +307,98 @@
       </div>
 
     </main>
+  </div>
+
+  <!-- ── Inline Image Modal ── -->
+  <div class="modal-overlay" id="img-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="img-modal-title">
+    <div class="link-modal">
+      <h3 class="link-modal__title" id="img-modal-title">Insert Image</h3>
+      <div class="img-modal-drop" id="img-modal-drop">
+        <input type="file" id="img-modal-file" accept="image/*" tabindex="-1" />
+        <p><span>Click to upload</span> or drag &amp; drop</p>
+        <div class="img-modal-drop__status" id="img-modal-status"></div>
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="img-modal-path">Image Path</label>
+        <input class="link-modal__input" type="text" id="img-modal-path" placeholder="assets/images/blog/my-image.jpg" autocomplete="off" />
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="img-modal-alt">Alt Text</label>
+        <input class="link-modal__input" type="text" id="img-modal-alt" placeholder="Describe the image…" autocomplete="off" />
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label">Alignment</label>
+        <div class="img-align-group">
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="left" />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="10" y1="3" x2="17" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="6" x2="17" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Left
+            </span>
+          </label>
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="center" checked />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="5" y="1" width="8" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Center
+            </span>
+          </label>
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="right" />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="10" y="1" width="7" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="1" y1="3" x2="8" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="8" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Right
+            </span>
+          </label>
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="full" />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="16" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Full
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="link-modal__actions">
+        <button class="btn btn-outline" id="img-modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="img-modal-confirm">Insert Image</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Insert Link Modal ── -->
+  <div class="modal-overlay" id="link-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="link-modal-title">
+    <div class="link-modal">
+      <h3 class="link-modal__title" id="link-modal-title">Insert Link</h3>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="link-text-input">Link Text</label>
+        <input class="link-modal__input" type="text" id="link-text-input" placeholder="Text to display…" autocomplete="off" />
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="link-url-input">URL</label>
+        <input class="link-modal__input" type="url" id="link-url-input" placeholder="https://example.com" autocomplete="off" />
+      </div>
+      <label class="link-modal__checkbox">
+        <input type="checkbox" id="link-new-tab" />
+        Open in new tab
+      </label>
+      <div class="link-modal__actions">
+        <button class="btn btn-outline" id="link-modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="link-modal-confirm">Insert Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Discard Changes Modal ── -->
+  <div class="modal-overlay" id="discard-modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h3>Discard Changes?</h3>
+      <p>You have unsaved changes. Going back now will lose your work.</p>
+      <div class="modal__actions">
+        <button class="btn btn-outline" id="discard-cancel">Keep Editing</button>
+        <button class="btn btn-danger" id="discard-confirm" style="background:rgba(224,82,82,0.15); border:1px solid rgba(224,82,82,0.3); color:#e05252; padding:9px 18px;">Discard</button>
+      </div>
+    </div>
   </div>
 
   <!-- ── Confirm Delete Modal ── -->
@@ -275,7 +416,7 @@
   <!-- ── Toast ── -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/admin.js"></script>
+  <script src="js/admin.js?v=14"></script>
 
 </body>
 </html>

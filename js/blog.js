@@ -12,6 +12,13 @@ const grid        = document.getElementById('blog-grid');
 const loadMoreBtn = document.getElementById('load-more-btn');
 const loadMoreWrap = document.getElementById('blog-load-more');
 
+function readingTime(body) {
+  const text  = body.replace(/<[^>]+>/g, ' ');
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const mins  = Math.max(1, Math.round(words / 200));
+  return `${mins} min read`;
+}
+
 // Format date: "2026-06-20" → "June 20, 2026"
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -35,6 +42,7 @@ function buildCard(post) {
       <div class="blog-card__meta">
         <span class="blog-card__author">${post.author}</span>
         <span class="blog-card__date">${formatDate(post.date)}</span>
+        <span class="blog-card__reading-time">${readingTime(post.body)}</span>
       </div>
       <span class="blog-card__read-more">
         Read More
@@ -123,8 +131,8 @@ if (sortSelect) {
 fetch(POSTS_URL)
   .then(r => r.json())
   .then(posts => {
-    allPosts = posts;
-    initFilters(posts);
+    allPosts = posts.filter(p => p.published !== false);
+    initFilters(allPosts);
     applyFilterAndSort();
   })
   .catch(() => {
