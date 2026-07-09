@@ -9,7 +9,7 @@
     "excerpt": "test",
     "image": "",
     "imageAlt": "",
-    "body": "<img src=\"assets/images/blog/thiel { Software }.png\" alt=\"\" style=\"display: block; margin: 16px auto; height: auto;\" data-raw-tried=\"1\">test<div><br></div>",
+    "body": "<img src=\"assets/images/blog/pnc_aerial_drone.jpg\" alt=\"stadium\" style=\"display: block; margin: 16px auto; height: auto;\"><img src=\"assets/images/blog/thiel { Software }.png\" alt=\"\" style=\"display: block; margin: 16px auto; height: auto;\" data-raw-tried=\"1\" class=\"img-broken\">test<div><br></div>",
     "published": false
   },
   {
