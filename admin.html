@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Admin — Steel City Visuals</title>
+  <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css?v=13" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       SCREEN: Login
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen-login">
+    <div class="login-card">
+      <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="login-card__logo" />
+      <h1>Blog Admin</h1>
+      <p>Enter your password to manage blog posts.</p>
+      <div class="login-card__error" id="login-error" role="alert"></div>
+      <form id="login-form" style="display:flex; flex-direction:column; gap:12px;">
+        <div class="form-field">
+          <input
+            type="password"
+            id="login-password"
+            placeholder="Password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+          Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCREEN: Token Setup
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen-token">
+    <div class="token-card">
+      <h2>One-Time Setup: GitHub Token</h2>
+      <p>To publish posts directly from this page, we need a GitHub Personal Access Token. This is a one-time step — it's saved in your browser and you'll never need to do it again.</p>
+      <ol>
+        <li>Go to <strong>github.com → Settings → Developer Settings → Personal Access Tokens → Tokens (classic)</strong></li>
+        <li>Click <strong>Generate new token (classic)</strong></li>
+        <li>Give it a name like <strong>"SCV Blog Admin"</strong></li>
+        <li>Set expiration to <strong>No expiration</strong> (or 1 year)</li>
+        <li>Check the <strong>repo</strong> scope (full repository access)</li>
+        <li>Click <strong>Generate token</strong> and copy it</li>
+      </ol>
+      <div class="token-card__note">
+        Your token is saved only in this browser. It is never sent anywhere except directly to GitHub's API.
+      </div>
+      <div class="form-field" style="margin-bottom:16px;">
+        <label for="token-input">GitHub Personal Access Token</label>
+        <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+      </div>
+      <button class="btn btn-primary" id="token-save-btn" style="width:100%; justify-content:center;">
+        Save &amp; Continue
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCREEN: Post List
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen-list">
+
+    <header class="admin-header">
+      <div class="admin-header__left">
+        <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="admin-header__logo" />
+        <span class="admin-header__badge">Blog Admin</span>
+      </div>
+      <div class="admin-header__right">
+        <button class="btn btn-outline btn-sm" id="new-post-btn">+ New Post</button>
+        <a href="index.html" class="btn btn-ghost btn-sm">← Website</a>
+        <button class="btn btn-ghost btn-sm" id="logout-btn">Log Out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <div id="list-loading" style="text-align:center; padding:60px 0; color:#888;">
+        Loading posts…
+      </div>
+
+      <div id="list-content" hidden>
+        <div class="admin-titlebar">
+          <h2>Posts <span id="post-count"></span></h2>
+          <div class="admin-titlebar__right">
+            <div class="post-search-wrap">
+              <svg class="post-search__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <input type="search" id="post-search" class="post-search__input" placeholder="Search posts…" autocomplete="off" />
+            </div>
+            <button class="btn btn-primary" onclick="showPostForm(null)">+ New Post</button>
+          </div>
+        </div>
+        <div class="post-list" id="post-list"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCREEN: Post Form
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen-form">
+
+    <header class="admin-header">
+      <div class="admin-header__left">
+        <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="admin-header__logo" />
+        <span class="admin-header__badge">Blog Admin</span>
+      </div>
+      <div class="admin-header__right">
+        <a href="index.html" class="btn btn-ghost btn-sm">← Website</a>
+        <button class="btn btn-ghost btn-sm" id="logout-btn-form">Log Out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <div class="admin-form-header">
+        <button class="back-btn" id="form-back-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M13 7H1M6 2L1 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All Posts
+        </button>
+        <h2 id="form-heading">New Post</h2>
+      </div>
+
+      <div class="form-layout">
+
+        <!-- Left: Title + Body -->
+        <div class="form-main">
+
+          <div class="form-field">
+            <label for="f-title">Post Title *</label>
+            <input type="text" id="f-title" class="title-input" placeholder="Enter post title…" />
+          </div>
+
+          <div class="form-field">
+            <label for="f-slug">URL Slug *</label>
+            <input type="text" id="f-slug" placeholder="auto-generated-from-title" />
+            <span class="form-field__hint">steelcityvisuals.com/blog-post.html?slug=<strong id="slug-preview"></strong></span>
+          </div>
+
+          <!-- Rich Text Body -->
+          <div class="form-field">
+            <label>Post Body *</label>
+            <div class="editor-wrap">
+              <div class="editor-toolbar" role="toolbar" aria-label="Text formatting">
+
+                <button class="toolbar-btn" data-cmd="bold" title="Bold" type="button"><b>B</b></button>
+                <button class="toolbar-btn" data-cmd="italic" title="Italic" type="button"><i>I</i></button>
+
+                <div class="editor-sep"></div>
+
+                <button class="toolbar-btn" data-cmd="formatBlock" data-value="h2" title="Heading 2" type="button">H2</button>
+                <button class="toolbar-btn" data-cmd="formatBlock" data-value="h3" title="Heading 3" type="button">H3</button>
+                <button class="toolbar-btn" data-cmd="formatBlock" data-value="p"  title="Paragraph" type="button">¶</button>
+
+                <div class="editor-sep"></div>
+
+                <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Bullet list" type="button">• List</button>
+                <button class="toolbar-btn" data-cmd="insertOrderedList"   title="Numbered list" type="button">1. List</button>
+
+                <div class="editor-sep"></div>
+
+                <button class="toolbar-btn" data-cmd="createLink"  title="Insert link"  type="button">Link</button>
+                <button class="toolbar-btn" data-cmd="unlink"      title="Remove link"  type="button">Unlink</button>
+                <button class="toolbar-btn" data-cmd="insertImage" title="Insert image" type="button">Img</button>
+
+                <div class="editor-sep"></div>
+
+                <button class="toolbar-btn" data-cmd="removeFormat" title="Clear formatting" type="button">Clear</button>
+
+              </div>
+              <div
+                class="editor-body"
+                id="editor-body"
+                contenteditable="true"
+                data-placeholder="Write your post here…"
+                role="textbox"
+                aria-multiline="true"
+                aria-label="Post body"
+              ></div>
+            </div>
+            <div class="editor-meta">
+              <span id="editor-word-count" class="editor-word-count">0 words</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Metadata + Publish -->
+        <div class="form-sidebar">
+
+          <!-- Publish -->
+          <div class="publish-bar">
+            <div class="publish-bar__top">
+              <span class="publish-bar__label">Status</span>
+              <span class="publish-bar__status" id="publish-status"></span>
+              <span class="publish-bar__live" id="publish-live" style="display:none;">
+                <span class="live-dot"></span> Live &mdash; <a id="view-post-link" href="#" target="_blank" rel="noopener noreferrer">View Post</a>
+              </span>
+            </div>
+            <div class="publish-bar__buttons">
+              <button class="btn btn-outline publish-bar__btn" id="draft-btn">Save Draft</button>
+              <button class="btn btn-primary publish-bar__btn" id="publish-btn">
+                Publish
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <a id="preview-btn" href="#" target="_blank" rel="noopener noreferrer" class="publish-bar__preview-link" style="display:none;">
+              Preview post
+              <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M6 2H2a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V8M9 1h4m0 0v4m0-4L6 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Post Details -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">Post Details</div>
+
+            <div class="form-field">
+              <label for="f-author">Author Name *</label>
+              <input type="text" id="f-author" placeholder="Kyle Jennings" />
+            </div>
+
+            <div class="form-field">
+              <label for="f-author-title">Author Title</label>
+              <input type="text" id="f-author-title" placeholder="CEO &amp; Founder" />
+            </div>
+
+            <div class="form-field">
+              <label for="f-date">Publish Date *</label>
+              <input type="date" id="f-date" />
+            </div>
+
+            <div class="form-field">
+              <label for="f-category">Category *</label>
+              <select id="f-category"></select>
+            </div>
+
+            <div class="form-field">
+              <label for="f-excerpt">Excerpt *</label>
+              <textarea id="f-excerpt" rows="3" placeholder="Short teaser shown on the blog listing page…"></textarea>
+            </div>
+          </div>
+
+          <!-- SEO -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">SEO</div>
+            <div class="form-field">
+              <label for="f-meta-desc">Meta Description</label>
+              <div class="char-count-wrap">
+                <textarea id="f-meta-desc" rows="3" placeholder="Short description for search engines (recommended: 150–160 chars)…" maxlength="160"></textarea>
+                <span class="char-count" id="meta-desc-count">0/160</span>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="f-og-image">OG Image Path</label>
+              <input type="text" id="f-og-image" placeholder="Defaults to featured image if blank" />
+              <span class="form-field__hint">Override the social share image.</span>
+            </div>
+          </div>
+
+          <!-- Featured Image -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">Featured Image</div>
+
+            <div class="image-upload-wrap">
+              <div class="image-drop-zone" id="image-drop-zone">
+                <input type="file" id="image-file-input" accept="image/*" tabindex="-1" />
+                <p>
+                  <span>Click to upload</span> or drag &amp; drop<br />
+                  <small style="color:#666;">JPG, PNG, WebP — saved to assets/images/blog/</small>
+                </p>
+              </div>
+              <img src="" alt="Featured image preview" class="image-preview" id="image-preview" />
+              <div class="image-upload-status" id="image-upload-status"></div>
+              <div class="form-field">
+                <label for="f-image-path">Image Path</label>
+                <input type="text" id="f-image-path" placeholder="assets/images/blog/my-image.jpg" />
+                <span class="form-field__hint">Auto-filled on upload, or type a path manually.</span>
+              </div>
+              <div class="form-field">
+                <label for="f-image-alt">Alt Text</label>
+                <input type="text" id="f-image-alt" placeholder="Describe the image for accessibility…" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── Inline Image Modal ── -->
+  <div class="modal-overlay" id="img-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="img-modal-title">
+    <div class="link-modal">
+      <h3 class="link-modal__title" id="img-modal-title">Insert Image</h3>
+      <div class="img-modal-drop" id="img-modal-drop">
+        <input type="file" id="img-modal-file" accept="image/*" tabindex="-1" />
+        <p><span>Click to upload</span> or drag &amp; drop</p>
+        <div class="img-modal-drop__status" id="img-modal-status"></div>
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="img-modal-path">Image Path</label>
+        <input class="link-modal__input" type="text" id="img-modal-path" placeholder="assets/images/blog/my-image.jpg" autocomplete="off" />
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="img-modal-alt">Alt Text</label>
+        <input class="link-modal__input" type="text" id="img-modal-alt" placeholder="Describe the image…" autocomplete="off" />
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label">Alignment</label>
+        <div class="img-align-group">
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="left" />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="10" y1="3" x2="17" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="6" x2="17" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Left
+            </span>
+          </label>
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="center" checked />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="5" y="1" width="8" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Center
+            </span>
+          </label>
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="right" />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="10" y="1" width="7" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="1" y1="3" x2="8" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="8" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Right
+            </span>
+          </label>
+          <label class="img-align-option">
+            <input type="radio" name="img-align" value="full" />
+            <span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="16" height="7" rx="1" fill="currentColor" opacity=".8"/><line x1="1" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Full
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="link-modal__actions">
+        <button class="btn btn-outline" id="img-modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="img-modal-confirm">Insert Image</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Insert Link Modal ── -->
+  <div class="modal-overlay" id="link-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="link-modal-title">
+    <div class="link-modal">
+      <h3 class="link-modal__title" id="link-modal-title">Insert Link</h3>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="link-text-input">Link Text</label>
+        <input class="link-modal__input" type="text" id="link-text-input" placeholder="Text to display…" autocomplete="off" />
+      </div>
+      <div class="link-modal__field">
+        <label class="link-modal__label" for="link-url-input">URL</label>
+        <input class="link-modal__input" type="url" id="link-url-input" placeholder="https://example.com" autocomplete="off" />
+      </div>
+      <label class="link-modal__checkbox">
+        <input type="checkbox" id="link-new-tab" />
+        Open in new tab
+      </label>
+      <div class="link-modal__actions">
+        <button class="btn btn-outline" id="link-modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="link-modal-confirm">Insert Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Discard Changes Modal ── -->
+  <div class="modal-overlay" id="discard-modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h3>Discard Changes?</h3>
+      <p>You have unsaved changes. Going back now will lose your work.</p>
+      <div class="modal__actions">
+        <button class="btn btn-outline" id="discard-cancel">Keep Editing</button>
+        <button class="btn btn-danger" id="discard-confirm" style="background:rgba(224,82,82,0.15); border:1px solid rgba(224,82,82,0.3); color:#e05252; padding:9px 18px;">Discard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Confirm Delete Modal ── -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <h3 id="modal-title">Delete Post?</h3>
+      <p>Are you sure you want to delete <strong id="confirm-title"></strong>? This cannot be undone.</p>
+      <div class="modal__actions">
+        <button class="btn btn-outline" id="modal-cancel">Cancel</button>
+        <button class="btn btn-danger" id="modal-confirm" style="background:rgba(224,82,82,0.15); border:1px solid rgba(224,82,82,0.3); color:#e05252; padding:9px 18px;">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/admin.js?v=14"></script>
+
+</body>
+</html>

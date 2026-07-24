@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accessibility Statement — Steel City Visuals</title>
-  <meta name="description" content="Steel City Visuals accessibility statement — our commitment to an inclusive web experience." />
+  <title>Blog — Steel City Visuals</title>
+  <meta name="description" id="meta-description" content="" />
+  <meta property="og:title"       id="og-title"       content="" />
+  <meta property="og:description" id="og-description" content="" />
+  <meta property="og:image"       id="og-image"        content="" />
+  <meta property="og:type" content="article" />
   <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
 
   <!-- Google Fonts -->
@@ -16,7 +20,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/legal.css" />
+  <link rel="stylesheet" href="css/blog.css" />
 </head>
 <body>
 
@@ -35,7 +39,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="blog.html" class="nav__link--active">Blog</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -71,59 +75,93 @@
   </div>
 
   <main id="main-content">
-    <section class="legal-hero">
-      <div class="container">
-        <span class="section-label">Legal</span>
-        <h1 class="legal-hero__title">Accessibility Statement</h1>
-        <p class="legal-hero__meta">Last updated: January 1, 2025 &nbsp;·&nbsp; Steel City Visuals LLC</p>
+
+    <!-- Loading state -->
+    <div id="post-loading" style="min-height:60vh; display:flex; align-items:center; justify-content:center;">
+      <p style="color:var(--color-muted); font-size:var(--text-lg);">Loading post…</p>
+    </div>
+
+    <!-- Not found state -->
+    <div id="post-not-found" hidden style="min-height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; padding: var(--space-16);">
+      <div>
+        <h1 style="font-size:var(--text-4xl); font-weight:900; color:var(--color-text); margin-bottom:var(--space-4);">Post Not Found</h1>
+        <p style="color:var(--color-muted); margin-bottom:var(--space-8);">The post you're looking for doesn't exist or may have been removed.</p>
+        <a href="blog.html" class="btn btn-primary">Back to Blog</a>
       </div>
-    </section>
+    </div>
 
-    <section class="legal-body">
-      <div class="container">
-        <div class="legal-content">
+    <!-- Post content -->
+    <div id="post-content" hidden>
 
-          <p>Steel City Visuals LLC is committed to ensuring that our website is accessible to everyone, including people with disabilities. We believe that every visitor deserves an equal and inclusive experience.</p>
-
-          <h2>Our Commitment</h2>
-          <p>We aim to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong>. These guidelines explain how to make web content more accessible to people with disabilities, including those who use assistive technologies such as screen readers, keyboard navigation, or voice control software.</p>
-
-          <h2>Measures We Have Taken</h2>
-          <p>To support accessibility, we have implemented the following across this website:</p>
-          <ul>
-            <li>Semantic HTML landmarks and heading structure for screen reader navigation.</li>
-            <li>Descriptive <code>alt</code> text on all meaningful images; decorative images are marked with <code>aria-hidden="true"</code>.</li>
-            <li>Keyboard-navigable interface including the lightbox, mobile menu, and all interactive elements.</li>
-            <li>Sufficient color contrast between text and backgrounds throughout the site.</li>
-            <li>Focus indicators visible for keyboard users.</li>
-            <li><code>aria-label</code> attributes on icon-only buttons and links.</li>
-            <li>Animated elements (testimonials marquee, logo strip) that pause on hover to reduce motion distraction.</li>
-            <li>Responsive design that adapts to any screen size or zoom level.</li>
-          </ul>
-
-          <h2>Known Limitations</h2>
-          <p>While we strive for full accessibility, some areas are still being improved:</p>
-          <ul>
-            <li>Some older portfolio images may have limited alt text descriptions. We are working to improve these over time.</li>
-            <li>Third-party services (booking portal, Formspree) are managed by their respective providers and may have their own accessibility limitations outside of our control.</li>
-          </ul>
-
-          <h2>Feedback & Contact</h2>
-          <p>We welcome feedback on the accessibility of this website. If you experience any barriers or have suggestions for improvement, please contact us:</p>
-          <p>
-            Steel City Visuals LLC<br />
-            5800 Corporate Drive, Floor 3, Suites 307 &amp; 308<br />
-            Pittsburgh, PA 15237<br />
-            <a href="mailto:team@steelcityvisuals.com">team@steelcityvisuals.com</a>
-          </p>
-          <p>We aim to respond to accessibility feedback within 5 business days.</p>
-
-          <h2>Formal Complaints</h2>
-          <p>If you are not satisfied with our response, you may contact the relevant accessibility authority in your jurisdiction. In the United States, this may include filing a complaint with the <a href="https://www.ada.gov/" target="_blank" rel="noopener">U.S. Department of Justice</a> under the Americans with Disabilities Act (ADA).</p>
-
+      <!-- Hero -->
+      <section class="post-hero">
+        <div class="post-hero__bg" id="post-hero-bg"></div>
+        <div class="post-hero__overlay"></div>
+        <div class="container post-hero__content">
+          <span class="post-hero__category" id="post-category"></span>
+          <h1 class="post-hero__title" id="post-title"></h1>
+          <div class="post-hero__meta">
+            <div class="post-hero__author">
+              <span class="post-hero__author-name" id="post-author-name"></span>
+              <span class="post-hero__author-title" id="post-author-title"></span>
+            </div>
+            <div class="post-hero__divider" aria-hidden="true"></div>
+            <span class="post-hero__date" id="post-date"></span>
+            <div class="post-hero__divider" aria-hidden="true"></div>
+            <span class="post-hero__reading-time" id="post-reading-time"></span>
+          </div>
         </div>
+      </section>
+
+      <!-- Body -->
+      <div class="container post-body-wrap">
+        <a href="blog.html" class="post-back">
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M13 7H1M6 2L1 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Blog
+        </a>
+
+        <article class="post-body" id="post-body"></article>
+
+        <!-- Share -->
+        <div class="post-share">
+          <span class="post-share__label">Share this post</span>
+          <div class="post-share__buttons">
+            <a id="share-twitter" class="post-share__btn post-share__btn--twitter" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on X / Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X / Twitter
+            </a>
+            <a id="share-facebook" class="post-share__btn post-share__btn--facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+            <button id="share-copy" class="post-share__btn post-share__btn--copy" aria-label="Copy link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Link
+            </button>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="post-cta">
+          <h3>Ready to Work with Us?</h3>
+          <p>Let's create something great together. Reach out or book directly online.</p>
+          <div style="display:flex; gap:var(--space-4); justify-content:center; flex-wrap:wrap;">
+            <a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener" class="btn btn-primary">
+              Book Now
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="index.html#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+
       </div>
-    </section>
+
+    </div>
+
   </main>
 
   <!-- ── Footer ── -->
@@ -152,8 +190,8 @@
           <ul class="footer__links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#services">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="index.html#about">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="index.html#contact">Contact</a></li>
             <li><a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener">Book Real Estate</a></li>
           </ul>
@@ -176,6 +214,7 @@
           <a href="privacy.html">Privacy Policy</a>
           <a href="accessibility.html">Accessibility Statement</a>
         </div>
+        <p style="font-size:var(--text-xs); color:rgba(255,255,255,0.35); margin-top:var(--space-2);">Designed &amp; built by <a href="https://www.thielsoftware.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5); text-decoration:none;">Chase Thiel</a></p>
       </div>
     </div>
   </footer>
@@ -190,6 +229,7 @@
   <!-- JS -->
   <script src="js/nav.js"></script>
   <script src="js/admin-knock.js"></script>
+  <script src="js/blog-post.js?v=6"></script>
 
 </body>
 </html>

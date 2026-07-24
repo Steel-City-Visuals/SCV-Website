@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accessibility Statement — Steel City Visuals</title>
-  <meta name="description" content="Steel City Visuals accessibility statement — our commitment to an inclusive web experience." />
+  <title>Blog — Steel City Visuals</title>
+  <meta name="description" content="Tips, insights, and behind-the-scenes from Pittsburgh's premier visual media team." />
   <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
 
   <!-- Google Fonts -->
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/legal.css" />
+  <link rel="stylesheet" href="css/blog.css" />
 </head>
 <body>
 
@@ -35,7 +35,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="blog.html" class="nav__link--active">Blog</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
@@ -71,59 +71,52 @@
   </div>
 
   <main id="main-content">
-    <section class="legal-hero">
+
+    <!-- ── Page Hero ── -->
+    <section class="blog-hero">
       <div class="container">
-        <span class="section-label">Legal</span>
-        <h1 class="legal-hero__title">Accessibility Statement</h1>
-        <p class="legal-hero__meta">Last updated: January 1, 2025 &nbsp;·&nbsp; Steel City Visuals LLC</p>
+        <span class="blog-hero__label">From the Team</span>
+        <h1 class="blog-hero__title">Tips &amp; Insights</h1>
+        <p class="blog-hero__sub">Behind-the-scenes knowledge, industry tips, and stories from Pittsburgh's visual media team.</p>
       </div>
     </section>
 
-    <section class="legal-body">
+    <!-- ── Blog Section ── -->
+    <section class="section">
       <div class="container">
-        <div class="legal-content">
 
-          <p>Steel City Visuals LLC is committed to ensuring that our website is accessible to everyone, including people with disabilities. We believe that every visitor deserves an equal and inclusive experience.</p>
-
-          <h2>Our Commitment</h2>
-          <p>We aim to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong>. These guidelines explain how to make web content more accessible to people with disabilities, including those who use assistive technologies such as screen readers, keyboard navigation, or voice control software.</p>
-
-          <h2>Measures We Have Taken</h2>
-          <p>To support accessibility, we have implemented the following across this website:</p>
-          <ul>
-            <li>Semantic HTML landmarks and heading structure for screen reader navigation.</li>
-            <li>Descriptive <code>alt</code> text on all meaningful images; decorative images are marked with <code>aria-hidden="true"</code>.</li>
-            <li>Keyboard-navigable interface including the lightbox, mobile menu, and all interactive elements.</li>
-            <li>Sufficient color contrast between text and backgrounds throughout the site.</li>
-            <li>Focus indicators visible for keyboard users.</li>
-            <li><code>aria-label</code> attributes on icon-only buttons and links.</li>
-            <li>Animated elements (testimonials marquee, logo strip) that pause on hover to reduce motion distraction.</li>
-            <li>Responsive design that adapts to any screen size or zoom level.</li>
-          </ul>
-
-          <h2>Known Limitations</h2>
-          <p>While we strive for full accessibility, some areas are still being improved:</p>
-          <ul>
-            <li>Some older portfolio images may have limited alt text descriptions. We are working to improve these over time.</li>
-            <li>Third-party services (booking portal, Formspree) are managed by their respective providers and may have their own accessibility limitations outside of our control.</li>
-          </ul>
-
-          <h2>Feedback & Contact</h2>
-          <p>We welcome feedback on the accessibility of this website. If you experience any barriers or have suggestions for improvement, please contact us:</p>
-          <p>
-            Steel City Visuals LLC<br />
-            5800 Corporate Drive, Floor 3, Suites 307 &amp; 308<br />
-            Pittsburgh, PA 15237<br />
-            <a href="mailto:team@steelcityvisuals.com">team@steelcityvisuals.com</a>
-          </p>
-          <p>We aim to respond to accessibility feedback within 5 business days.</p>
-
-          <h2>Formal Complaints</h2>
-          <p>If you are not satisfied with our response, you may contact the relevant accessibility authority in your jurisdiction. In the United States, this may include filing a complaint with the <a href="https://www.ada.gov/" target="_blank" rel="noopener">U.S. Department of Justice</a> under the Americans with Disabilities Act (ADA).</p>
-
+        <!-- Controls -->
+        <div class="blog-controls">
+          <div class="blog-filters" id="blog-filters" role="group" aria-label="Filter by category">
+            <!-- Populated by JS -->
+          </div>
+          <div class="blog-sort">
+            <label for="blog-sort">Sort by:</label>
+            <select id="blog-sort" aria-label="Sort posts">
+              <option value="newest">Most Recent</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
         </div>
+
+        <!-- Grid -->
+        <div class="blog-grid" id="blog-grid" aria-live="polite">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Load More -->
+        <div class="blog-load-more" id="blog-load-more" hidden>
+          <button class="blog-load-more__btn" id="load-more-btn">
+            Load More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
       </div>
     </section>
+
   </main>
 
   <!-- ── Footer ── -->
@@ -152,8 +145,8 @@
           <ul class="footer__links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#services">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="index.html#about">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="index.html#contact">Contact</a></li>
             <li><a href="https://portal.steelcityvisuals.com/book" target="_blank" rel="noopener">Book Real Estate</a></li>
           </ul>
@@ -176,6 +169,7 @@
           <a href="privacy.html">Privacy Policy</a>
           <a href="accessibility.html">Accessibility Statement</a>
         </div>
+        <p style="font-size:var(--text-xs); color:rgba(255,255,255,0.35); margin-top:var(--space-2);">Designed &amp; built by <a href="https://www.thielsoftware.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5); text-decoration:none;">Chase Thiel</a></p>
       </div>
     </div>
   </footer>
@@ -190,6 +184,7 @@
   <!-- JS -->
   <script src="js/nav.js"></script>
   <script src="js/admin-knock.js"></script>
+  <script src="js/blog.js"></script>
 
 </body>
 </html>
