@@ -1,7 +1,7 @@
-// ── Blog single post page ──
+// ── main single post page ──
 
 const POSTS_URL        = 'blog/posts.json';
-const GITHUB_POSTS_URL = `https://api.github.com/repos/Steel-City-Visuals/SCV-Website/contents/blog/posts.json?ref=Blog&t=${Date.now()}`;
+const GITHUB_POSTS_URL = `https://api.github.com/repos/Steel-City-Visuals/SCV-Website/contents/blog/posts.json?ref=main&t=${Date.now()}`;
 
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -27,7 +27,7 @@ function readingTime(body) {
 
 // Rewrite relative asset paths to absolute GitHub raw URLs for local preview
 function rewriteForPreview(post) {
-  const base  = 'https://raw.githubusercontent.com/Steel-City-Visuals/SCV-Website/Blog/';
+  const base  = 'https://raw.githubusercontent.com/Steel-City-Visuals/SCV-Website/main/';
   const toAbs = s => (s && !/^https?:\/\//.test(s)) ? base + s : s;
   return {
     ...post,
