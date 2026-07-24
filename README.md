@@ -16,7 +16,6 @@ Custom-coded marketing website for Steel City Visuals (SCV), a Pittsburgh-based 
 | `portfolio.html` | Portfolio gallery with category filtering and lightbox |
 | `blog.html` | Blog listing page with category filter and load-more pagination |
 | `blog-post.html` | Single post page — loaded dynamically by slug from `blog/posts.json` |
-| `admin.html` | Password-protected blog CMS — create, edit, publish, and delete posts |
 | `privacy.html` | Privacy Policy |
 | `accessibility.html` | Accessibility Statement |
 
@@ -88,55 +87,7 @@ Logo, social links (LinkedIn, Facebook, Instagram), nav links, legal links, copy
 
 ## Blog
 
-### How it works
-All blog data lives in `blog/posts.json` — an array of post objects. The blog listing and single post pages fetch this file at runtime and render from it. No server required.
-
-### Post object shape
-```json
-{
-  "slug": "unique-url-slug",
-  "title": "Post Title",
-  "author": "Author Name",
-  "date": "YYYY-MM-DD",
-  "category": "Real Estate",
-  "excerpt": "Short summary shown on listing cards.",
-  "image": "assets/images/blog/cover.jpg",
-  "body": "<p>Full HTML content...</p>",
-  "status": "published"
-}
-```
-
-Status values: `"published"` (live) or `"draft"` (admin-only preview).
-
-### Categories
-Real Estate, Aerial, Wedding, Corporate, Behind the Scenes, Tips
-
----
-
-## Blog Admin CMS (admin.html)
-
-Password-protected CMS for managing blog posts without touching code.
-
-### Access
-- Navigate to `admin.html` (URL is not linked publicly)
-- Hidden entry point: click the footer copyright text **5 times within 3 seconds** on any page → redirects to admin
-- Enter the admin password → enter your GitHub personal access token once (stored encrypted in localStorage)
-
-### GitHub token requirements
-The admin commits directly to the GitHub repo via the GitHub Contents API. Each editor needs a **fine-grained personal access token** scoped to:
-- **Repository:** Steel-City-Visuals/SCV-Website only
-- **Permission — Contents:** Read and Write
-
-Tokens are named per editor in GitHub settings for individual revocation. To revoke an editor's access, delete their token in GitHub → Developer Settings → Fine-grained tokens.
-
-### Security model
-- Password hashed with PBKDF2 (100,000 iterations, SHA-256)
-- GitHub token encrypted at rest with AES-GCM 256-bit (key derived from password)
-- Encrypted token stored in `localStorage`; decryption key lives only in `sessionStorage` (cleared on tab close)
-- Token is sent only to `api.github.com` over HTTPS — never to any third party
-
-### Publish flow
-All changes are staged locally and require an explicit **Publish** action to commit to GitHub. **Discard** rolls back all pending changes. Exception: image uploads commit immediately (binary files cannot be batched into a JSON commit).
+The site includes a blog with category filtering, paginated listing, and individual post pages.
 
 ---
 
@@ -151,8 +102,6 @@ All changes are staged locally and require an explicit **Publish** action to com
 | `js/blog-preview.js` | Fetches `posts.json` and renders 3 most recent posts on the homepage |
 | `js/blog.js` | Blog listing page — filter by category, paginated load-more (6 per page) |
 | `js/blog-post.js` | Single post page — reads `?slug=` param, fetches post from `posts.json`, renders HTML body |
-| `js/admin.js` | Full blog CMS — auth, encryption, GitHub API read/write, post editor, publish/discard flow |
-| `js/admin-knock.js` | Secret knock — 5 clicks on footer copyright within 3 seconds navigates to `admin.html` |
 
 ---
 
@@ -165,9 +114,8 @@ All changes are staged locally and require an explicit **Publish** action to com
 | `css/layout.css` | Section wrappers, grid containers, responsive breakpoints |
 | `css/components.css` | All component styles — nav, hero, cards, forms, lightbox, marquee, etc. |
 | `css/portfolio.css` | Portfolio-specific grid and lightbox styles |
-| `css/blog.css` | Blog listing, blog post, and admin CMS styles |
+| `css/blog.css` | Blog listing and post styles |
 | `css/legal.css` | Privacy and accessibility page styles |
-| `css/admin.css` | Admin panel layout and UI styles |
 
 ---
 
@@ -189,7 +137,6 @@ All changes are staged locally and require an explicit **Publish** action to com
 - **Trust strip logos:** CSS `filter: brightness(0) invert(1)` for white — except Howard Hanna which uses the color `-better.webp` version
 - **`[hidden]` override** in `base.css` — required for lightbox show/hide to work correctly
 - **No border-radius on team photos** — causes double-ring artifact with baked-in yellow ring
-- **Admin branch constant** — `BRANCH` in `admin.js` must match the deployed branch (update to `main` after Blog branch is merged)
 
 ---
 
