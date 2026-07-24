@@ -386,21 +386,11 @@
   flex-shrink: 0;
 }
 
-/* Service card grid — 2+3 layout */
+/* Service card grid — 2×2 layout */
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-4);
-}
-
-/* First 2 cards span 3 cols each */
-.services__card:nth-child(-n+2) {
-  grid-column: span 3;
-}
-
-/* Last 3 cards span 2 cols each */
-.services__card:nth-child(n+3) {
-  grid-column: span 2;
 }
 
 .services__card {
@@ -447,10 +437,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .services__card:nth-child(-n+2),
-  .services__card:nth-child(n+3) {
-    grid-column: span 1;
-  }
 }
 
 @media (max-width: 768px) {
@@ -470,11 +456,6 @@
 
   .services__grid {
     grid-template-columns: 1fr;
-  }
-
-  .services__card:nth-child(-n+2),
-  .services__card:nth-child(n+3) {
-    grid-column: span 1;
   }
 }
 
