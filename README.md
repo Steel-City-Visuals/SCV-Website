@@ -2,8 +2,8 @@
 
 Custom-coded marketing website for Steel City Visuals (SCV), a Pittsburgh-based visual media production company. Rebuilt from Wix to a fully static site for better performance, control, and professionalism.
 
-**Live domain:** steelcityvisuals.com
-**Hosting:** GitHub Pages
+**Live domain:** steelcityvisuals.com  
+**Hosting:** GitHub Pages  
 **Tech stack:** Plain HTML / CSS / JS — no frameworks, no build system, no npm
 
 ---
@@ -14,6 +14,9 @@ Custom-coded marketing website for Steel City Visuals (SCV), a Pittsburgh-based 
 |---|---|
 | `index.html` | Main site — all primary sections |
 | `portfolio.html` | Portfolio gallery with category filtering and lightbox |
+| `blog.html` | Blog listing page with category filter and load-more pagination |
+| `blog-post.html` | Single post page — loaded dynamically by slug from `blog/posts.json` |
+| `admin.html` | Password-protected blog CMS — create, edit, publish, and delete posts |
 | `privacy.html` | Privacy Policy |
 | `accessibility.html` | Accessibility Statement |
 
@@ -28,9 +31,16 @@ Full-screen dark hero with SCV headline, subtext, and dual CTAs (Book Now → bo
 Infinite auto-scrolling logo marquee of partner/client brands: Compass, eXp Realty, Coldwell Banker, Howard Hanna, Realty One Group, Charter Homes, HMA, Tenaris, Coca-Cola, Sotheby's.
 
 ### Services
-Six service cards in a featured layout:
-- **Real Estate Marketing** — full-width featured card (Most Popular)
-- **Branding**, **Premium Wedding Imagery**, **Aerial Drone Photography**, **Corporate**, **Social Media Marketing** — 2+3 grid layout below
+Real Estate Marketing featured full-width card (Most Popular), then four service cards in a 2×2 grid:
+- **Branding**
+- **Premium Wedding Imagery**
+- **Aerial Drone Photography**
+- **Corporate**
+
+> Social Media Marketing card is written but commented out — ready to enable when the service launches.
+
+### Blog Preview
+Three most recent published posts rendered from `blog/posts.json`. Links through to `blog.html` and individual `blog-post.html?slug=` pages.
 
 ### Pricing
 - **Real Estate** — dynamic pricing via booking portal (instant quote based on address/sq footage)
@@ -76,14 +86,88 @@ Logo, social links (LinkedIn, Facebook, Instagram), nav links, legal links, copy
 
 ---
 
-## JavaScript Features
+## Blog
 
-| File | Features |
+### How it works
+All blog data lives in `blog/posts.json` — an array of post objects. The blog listing and single post pages fetch this file at runtime and render from it. No server required.
+
+### Post object shape
+```json
+{
+  "slug": "unique-url-slug",
+  "title": "Post Title",
+  "author": "Author Name",
+  "date": "YYYY-MM-DD",
+  "category": "Real Estate",
+  "excerpt": "Short summary shown on listing cards.",
+  "image": "assets/images/blog/cover.jpg",
+  "body": "<p>Full HTML content...</p>",
+  "status": "published"
+}
+```
+
+Status values: `"published"` (live) or `"draft"` (admin-only preview).
+
+### Categories
+Real Estate, Aerial, Wedding, Corporate, Behind the Scenes, Tips
+
+---
+
+## Blog Admin CMS (admin.html)
+
+Password-protected CMS for managing blog posts without touching code.
+
+### Access
+- Navigate to `admin.html` (URL is not linked publicly)
+- Hidden entry point: click the footer copyright text **5 times within 3 seconds** on any page → redirects to admin
+- Enter the admin password → enter your GitHub personal access token once (stored encrypted in localStorage)
+
+### GitHub token requirements
+The admin commits directly to the GitHub repo via the GitHub Contents API. Each editor needs a **fine-grained personal access token** scoped to:
+- **Repository:** Steel-City-Visuals/SCV-Website only
+- **Permission — Contents:** Read and Write
+
+Tokens are named per editor in GitHub settings for individual revocation. To revoke an editor's access, delete their token in GitHub → Developer Settings → Fine-grained tokens.
+
+### Security model
+- Password hashed with PBKDF2 (100,000 iterations, SHA-256)
+- GitHub token encrypted at rest with AES-GCM 256-bit (key derived from password)
+- Encrypted token stored in `localStorage`; decryption key lives only in `sessionStorage` (cleared on tab close)
+- Token is sent only to `api.github.com` over HTTPS — never to any third party
+
+### Publish flow
+All changes are staged locally and require an explicit **Publish** action to commit to GitHub. **Discard** rolls back all pending changes. Exception: image uploads commit immediately (binary files cannot be batched into a JSON commit).
+
+---
+
+## JavaScript
+
+| File | Purpose |
 |---|---|
-| `js/nav.js` | Transparent → frosted-glass nav on scroll, hamburger mobile menu toggle, back-to-top button |
+| `js/nav.js` | Transparent → frosted-glass nav on scroll, hamburger mobile menu, back-to-top button |
 | `js/animations.js` | IntersectionObserver scroll-reveal, stat count-up animation, hero parallax |
 | `js/contact.js` | Formspree AJAX submission, loading/success/error states |
 | `js/portfolio.js` | Category filter logic, lightbox open/close/prev/next, keyboard nav, focus trap |
+| `js/blog-preview.js` | Fetches `posts.json` and renders 3 most recent posts on the homepage |
+| `js/blog.js` | Blog listing page — filter by category, paginated load-more (6 per page) |
+| `js/blog-post.js` | Single post page — reads `?slug=` param, fetches post from `posts.json`, renders HTML body |
+| `js/admin.js` | Full blog CMS — auth, encryption, GitHub API read/write, post editor, publish/discard flow |
+| `js/admin-knock.js` | Secret knock — 5 clicks on footer copyright within 3 seconds navigates to `admin.html` |
+
+---
+
+## CSS
+
+| File | Purpose |
+|---|---|
+| `css/variables.css` | Design tokens — colors, spacing, typography, radius, transitions |
+| `css/base.css` | Reset, global element styles, utility classes |
+| `css/layout.css` | Section wrappers, grid containers, responsive breakpoints |
+| `css/components.css` | All component styles — nav, hero, cards, forms, lightbox, marquee, etc. |
+| `css/portfolio.css` | Portfolio-specific grid and lightbox styles |
+| `css/blog.css` | Blog listing, blog post, and admin CMS styles |
+| `css/legal.css` | Privacy and accessibility page styles |
+| `css/admin.css` | Admin panel layout and UI styles |
 
 ---
 
@@ -92,7 +176,7 @@ Logo, social links (LinkedIn, Facebook, Instagram), nav links, legal links, copy
 - **Theme:** Dark — `#111111` background, `#1c1c1c` card surfaces
 - **Accent:** SCV yellow `#F5B800` — CTAs, highlights, active states, hover effects
 - **Typography:** White on dark; muted gray `#888888` for secondary text
-- **Nav:** Transparent at top, frosted glass after 20px scroll; always frosted on portfolio/legal pages
+- **Nav:** Transparent at top, frosted glass after 20px scroll; always frosted on portfolio/legal/blog pages
 - **Animations:** Reveal class + IntersectionObserver for fade-in-up on scroll
 - **Buttons:** `.btn-primary` (yellow fill) / `.btn-outline` (bordered)
 
@@ -102,9 +186,10 @@ Logo, social links (LinkedIn, Facebook, Instagram), nav links, legal links, copy
 
 - **Formspree CAPTCHA must be disabled** — AJAX submissions don't send a CAPTCHA token; Formshield ML spam filtering is used instead
 - **Team photos:** `object-fit: contain` (not cover) — yellow ring is baked into headshot images
-- **Trust strip logos:** CSS `filter: brightness(0) invert(1)` for white — except Howard Hanna which uses color
+- **Trust strip logos:** CSS `filter: brightness(0) invert(1)` for white — except Howard Hanna which uses the color `-better.webp` version
 - **`[hidden]` override** in `base.css` — required for lightbox show/hide to work correctly
 - **No border-radius on team photos** — causes double-ring artifact with baked-in yellow ring
+- **Admin branch constant** — `BRANCH` in `admin.js` must match the deployed branch (update to `main` after Blog branch is merged)
 
 ---
 
@@ -112,20 +197,30 @@ Logo, social links (LinkedIn, Facebook, Instagram), nav links, legal links, copy
 
 ```
 assets/images/
-├── brand/          — logo-white.png, logo-gold.png, favicon.png
-├── partners/       — trust strip client logos
+├── brand/          — logo-white.png, logo-white-full.png, logo-gold.png, favicon.png
+├── partners/       — trust strip client logos (10 brands)
 ├── team/           — headshots for all 6 team members
 ├── portfolio/
 │   ├── aerial/     — 17 aerial drone shots
 │   └── real-estate/ — 2 real estate interior/exterior shots
+├── blog/           — blog post cover images and inline images
 └── site/
     └── about-bg.jpg — Pittsburgh golden hour background
 ```
 
 ---
 
+## Data Files
+
+| File | Purpose |
+|---|---|
+| `blog/posts.json` | All blog post data — source of truth for listing, single post, and homepage preview |
+| `CNAME` | Custom domain record for GitHub Pages (`steelcityvisuals.com`) |
+
+---
+
 ## Contact Info
 
 - Email: team@steelcityvisuals.com
-- Address: 5800 Corporate Drive, Floor 3, Suites 307 & 308, Pittsburgh, PA 15237
+- Address: 842 East Ohio Street, Pittsburgh, PA 15212
 - Booking: portal.steelcityvisuals.com/book
