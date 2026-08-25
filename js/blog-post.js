@@ -50,7 +50,7 @@ function render(post) {
   document.getElementById('post-body').innerHTML = post.body;
 
   // Page title
-  document.title = `${post.title} — Steel City Visuals`;
+  document.title = `${post.title}: Steel City Visuals`;
 
   // Share buttons
   const pageUrl     = window.location.href.split('?')[0] + `?slug=${post.slug}`;

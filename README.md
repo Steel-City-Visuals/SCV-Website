@@ -57,13 +57,14 @@ Animated count-up numbers on scroll:
 - Next-Day Turnaround
 
 ### About / Team
-Pittsburgh golden-hour background image with company story. Six team member cards with headshots and LinkedIn links:
+Pittsburgh golden-hour background image with company story. Kyle is featured full-width at the top, followed by the rest of the team in a 3-column grid (2 rows):
 - Kyle Jennings — Owner, Executive Producer
 - Nicholas Colicchie — Real Estate Director, HR Manager
 - Conner Kelly — Creative Director, Visual Media Producer
 - Jessica Mastrean — Post Production & Motion Graphic Manager
 - Jade Fuccaro — Graphic Design Specialist
 - Kristi Sipes — Visual Media Producer
+- Calissa Holder — Marketing Coordinator
 
 ### Testimonials
 Two-row horizontal auto-scrolling marquee (row 1 left, row 2 right) with 8 client reviews. Pauses on hover. Fade mask on edges.

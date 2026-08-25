@@ -25,11 +25,11 @@ if (form) {
           success.hidden = false;
         }, 600);
       } else {
-        btn.textContent = 'Something went wrong — try again';
+        btn.textContent = 'Something went wrong, try again';
         btn.disabled = false;
       }
     } catch {
-      btn.textContent = 'Something went wrong — try again';
+      btn.textContent = 'Something went wrong, try again';
       btn.disabled = false;
     }
   });

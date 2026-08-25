@@ -79,7 +79,7 @@ function showImage(index) {
 
   lbImg.src        = img.src;
   lbImg.alt        = img.alt;
-  lbCaption.textContent = cat ? `${cat} — ${title}` : title;
+  lbCaption.textContent = cat ? `${cat} – ${title}` : title;
 
   // Arrow visibility
   prevBtn.style.opacity = index === 0 ? '0.3' : '1';

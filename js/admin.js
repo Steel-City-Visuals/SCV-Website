@@ -310,7 +310,7 @@ function buildPostRow(post) {
       <div class="post-row__title">${post.title}</div>
       <div class="post-row__category">${post.category}</div>
       <div class="post-row__date">${formatDateDisplay(post.date)}</div>
-      <div class="post-row__reading-time">${post.body ? readingTime(post.body) : '—'}</div>
+      <div class="post-row__reading-time">${post.body ? readingTime(post.body) : 'N/A'}</div>
       <div class="post-row__actions">
         <button class="btn btn-ghost btn-sm" onclick="showPostForm('${post.slug}')">Edit</button>
         <button class="btn btn-ghost btn-sm" onclick="duplicatePost('${post.slug}')">Duplicate</button>
