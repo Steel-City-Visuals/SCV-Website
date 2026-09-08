@@ -2,7 +2,7 @@
 
 .campaign-ended-banner {
   max-width: 760px;
-  margin: 0 auto var(--space-8);
+  margin: var(--space-10) auto var(--space-8);
   padding: var(--space-5) var(--space-6);
   background: rgba(245, 184, 0, 0.08);
   border: 1px solid rgba(245, 184, 0, 0.3);
