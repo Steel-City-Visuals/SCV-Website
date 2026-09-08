@@ -183,6 +183,39 @@ body {
   padding: 40px 32px 80px;
 }
 
+/* ── Dashboard Tabs ── */
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+
+.admin-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 4px;
+  margin-bottom: -1px;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.admin-tab:hover { color: var(--text); }
+
+.admin-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.admin-tab-panel { display: none; }
+.admin-tab-panel.active { display: block; }
+
 /* ── Section Title Bar ── */
 .admin-titlebar {
   display: flex;
@@ -336,6 +369,33 @@ body {
   gap: 8px;
   justify-content: flex-end;
 }
+
+/* ── Campaign List ── */
+.campaign-row {
+  grid-template-columns: 1fr 200px 100px 230px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-badge--active { color: var(--success); }
+.status-badge--active::before { background: var(--success); }
+
+.status-badge--inactive { color: var(--muted); }
+.status-badge--inactive::before { background: var(--muted); }
 
 /* ── Buttons ── */
 .btn {
@@ -818,6 +878,24 @@ body {
   background: var(--success, #4caf82);
   box-shadow: 0 0 0 2px rgba(76, 175, 130, 0.25);
   flex-shrink: 0;
+}
+
+.campaign-active-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.campaign-active-toggle input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--accent, #f5c518);
 }
 
 .publish-bar__buttons {

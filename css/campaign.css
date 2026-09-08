@@ -1,0 +1,16 @@
+/* ── Marketing Campaign Landing Page ── */
+
+.campaign-contact {
+  max-width: 640px;
+  margin: var(--space-16) auto 0;
+}
+
+.campaign-contact__heading {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.campaign-contact__heading .contact__intro {
+  color: var(--color-muted);
+  margin-top: var(--space-3);
+}

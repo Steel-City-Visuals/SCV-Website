@@ -16,8 +16,10 @@ Custom-coded marketing website for Steel City Visuals (SCV), a Pittsburgh-based 
 | `portfolio.html` | Portfolio gallery with category filtering and lightbox |
 | `blog.html` | Blog listing page with category filter and load-more pagination |
 | `blog-post.html` | Single post page — loaded dynamically by slug from `blog/posts.json` |
+| `campaign.html` | Marketing campaign landing page template — loaded by slug from `campaigns/campaigns.json`. Not linked from site nav; shareable only via direct URL. Also the template the admin clones to generate each campaign's static page (see Marketing Campaigns below) |
 | `privacy.html` | Privacy Policy |
 | `accessibility.html` | Accessibility Statement |
+| `admin.html` | Password-protected admin — manage blog posts and marketing campaigns. Reached via the secret 5-click knock on the footer copyright, or directly at `/admin.html` |
 
 ---
 
@@ -92,6 +94,29 @@ The site includes a blog with category filtering, paginated listing, and individ
 
 ---
 
+## Marketing Campaigns
+
+Unlisted, shareable landing pages for marketing campaigns (e.g. a paid ad or a printed flyer pointing to `steelcityvisuals.com/triplepackage`). Not linked from site navigation — only reachable by whoever has the direct URL.
+
+- **Source of truth:** `campaigns/campaigns.json` — name, slug, description, image, and an active/inactive flag per campaign.
+- **Live page:** when a campaign is saved in the admin, it commits a real file to the repo at `/{slug}/index.html`, generated from the `campaign.html` template with the `<title>` and `<meta og:*>` tags baked in directly (not just set via JS) so link-preview crawlers on iMessage/Slack/Facebook — which don't execute JavaScript — render the right title, description, and image. The page body itself is still rendered client-side by `js/campaign.js`, which fetches `campaigns.json` by slug, so editing a campaign's copy only requires re-saving in the admin (which regenerates the file).
+- **Inactive campaigns:** the generated page still exists, but shows a "Campaign Ended" state instead of the offer.
+- **Renaming a slug:** the admin deletes the old `/{old-slug}/index.html` and creates the new one automatically.
+- **Reserved slugs:** campaign slugs can't collide with existing top-level site paths (`blog`, `admin`, `assets`, `css`, `js`, etc.) — enforced in `js/admin.js`.
+
+---
+
+## Admin
+
+Password-protected, client-side-only admin at `admin.html` — manages both blog posts and marketing campaigns. There is no backend: the page authenticates locally (PBKDF2 password hash) and then commits directly to this repo via the GitHub Contents API, using a Personal Access Token the user generates once and stores encrypted in `localStorage`. The same token covers both blog posts and campaigns since it has full `repo` scope.
+
+| File | Purpose |
+|---|---|
+| `js/admin.js` | Auth, GitHub API calls, blog post CRUD, campaign CRUD, static campaign-page generation |
+| `css/admin.css` | Admin-only styling — separate from the public site's design system |
+
+---
+
 ## JavaScript
 
 | File | Purpose |
@@ -103,6 +128,7 @@ The site includes a blog with category filtering, paginated listing, and individ
 | `js/blog-preview.js` | Fetches `posts.json` and renders 3 most recent posts on the homepage |
 | `js/blog.js` | Blog listing page — filter by category, paginated load-more (6 per page) |
 | `js/blog-post.js` | Single post page — reads `?slug=` param, fetches post from `posts.json`, renders HTML body |
+| `js/campaign.js` | Campaign landing page — resolves slug from `?slug=` or the URL path, fetches `campaigns.json`, renders content, handles the contact form |
 
 ---
 
@@ -116,6 +142,7 @@ The site includes a blog with category filtering, paginated listing, and individ
 | `css/components.css` | All component styles — nav, hero, cards, forms, lightbox, marquee, etc. |
 | `css/portfolio.css` | Portfolio-specific grid and lightbox styles |
 | `css/blog.css` | Blog listing and post styles |
+| `css/campaign.css` | Marketing campaign landing page styles (reuses `blog.css`/`components.css` for the hero and contact form) |
 | `css/legal.css` | Privacy and accessibility page styles |
 
 ---
@@ -152,6 +179,7 @@ assets/images/
 │   ├── aerial/     — 17 aerial drone shots
 │   └── real-estate/ — 2 real estate interior/exterior shots
 ├── blog/           — blog post cover images and inline images
+├── campaigns/      — marketing campaign images
 └── site/
     └── about-bg.jpg — Pittsburgh golden hour background
 ```
@@ -163,6 +191,7 @@ assets/images/
 | File | Purpose |
 |---|---|
 | `blog/posts.json` | All blog post data — source of truth for listing, single post, and homepage preview |
+| `campaigns/campaigns.json` | All marketing campaign data — source of truth for each campaign's generated `/{slug}/index.html` page |
 | `CNAME` | Custom domain record for GitHub Pages (`steelcityvisuals.com`) |
 
 ---
