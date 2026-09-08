@@ -42,9 +42,17 @@ function rewriteForPreview(campaign) {
 }
 
 function render(campaign) {
+  const isActive = campaign.active !== false;
+
   document.getElementById('campaign-hero-bg').style.backgroundImage = `url('${toRootPath(campaign.image)}')`;
   document.getElementById('campaign-title').textContent       = campaign.name;
   document.getElementById('campaign-description').textContent = campaign.description;
+
+  // Inactive campaigns keep the hero + contact form (so visitors can still inquire)
+  // but swap in an "ended" banner and re-frame the ask instead of hard-hiding the page.
+  document.getElementById('campaign-ended-banner').hidden = isActive;
+  document.getElementById('campaign-contact-heading').textContent =
+    isActive ? 'Ready to Get Started?' : 'Want to Know When It’s Back?';
 
   document.title = `${campaign.name}: Steel City Visuals`;
 
@@ -54,7 +62,9 @@ function render(campaign) {
   const fieldSubject = document.getElementById('campaign-field-subject');
   if (fieldSlug)    fieldSlug.value    = campaign.slug;
   if (fieldName)    fieldName.value    = campaign.name;
-  if (fieldSubject) fieldSubject.value = `New lead: ${campaign.name}`;
+  if (fieldSubject) fieldSubject.value = isActive
+    ? `New lead: ${campaign.name}`
+    : `Inquiry: ${campaign.name} (campaign inactive)`;
 
   // SEO / share meta tags
   const metaDesc = campaign.description || '';
@@ -69,20 +79,11 @@ function render(campaign) {
   document.getElementById('campaign-content').hidden = false;
 }
 
-function showUnavailable(reason) {
+function showUnavailable() {
   document.getElementById('campaign-loading').hidden = true;
   const el      = document.getElementById('campaign-unavailable');
-  const heading = el.querySelector('h1');
-  const body    = el.querySelector('p');
-
-  if (reason === 'inactive') {
-    heading.textContent = 'Campaign Ended';
-    body.textContent    = "This campaign is no longer active. Reach out to us directly and we'll get you sorted.";
-  } else {
-    heading.textContent = 'Campaign Not Found';
-    body.textContent    = "The campaign you're looking for doesn't exist or may have been removed.";
-  }
-
+  el.querySelector('h1').textContent = 'Campaign Not Found';
+  el.querySelector('p').textContent  = "The campaign you're looking for doesn't exist or may have been removed.";
   el.hidden = false;
 }
 
@@ -92,7 +93,7 @@ const preview = isPreview();
 const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 
 if (!slug) {
-  showUnavailable('not-found');
+  showUnavailable();
 } else if (preview) {
   // Check localStorage first — admin writes live form state here for unsaved previews
   let localCampaign = null;
@@ -116,20 +117,19 @@ if (!slug) {
       .then(data => {
         const list     = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(data.content.replace(/\n/g, '')), c => c.charCodeAt(0))));
         const campaign = list.find(c => c.slug === slug);
-        campaign ? render(rewriteForPreview(campaign)) : showUnavailable('not-found');
+        campaign ? render(rewriteForPreview(campaign)) : showUnavailable();
       })
-      .catch(() => showUnavailable('not-found'));
+      .catch(() => showUnavailable());
   }
 } else {
   fetch(CAMPAIGNS_URL)
     .then(r => r.json())
     .then(list => {
       const campaign = list.find(c => c.slug === slug);
-      if (!campaign) { showUnavailable('not-found'); return; }
-      if (campaign.active === false) { showUnavailable('inactive'); return; }
+      if (!campaign) { showUnavailable(); return; }
       render(isLocal ? rewriteForPreview(campaign) : campaign);
     })
-    .catch(() => showUnavailable('not-found'));
+    .catch(() => showUnavailable());
 }
 
 // ── Contact form — AJAX submission via Formspree (mirrors js/contact.js) ──

@@ -1,5 +1,21 @@
 /* ── Marketing Campaign Landing Page ── */
 
+.campaign-ended-banner {
+  max-width: 760px;
+  margin: 0 auto var(--space-8);
+  padding: var(--space-5) var(--space-6);
+  background: rgba(245, 184, 0, 0.08);
+  border: 1px solid rgba(245, 184, 0, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+.campaign-ended-banner strong {
+  color: var(--color-accent);
+}
+
 .campaign-contact {
   max-width: 640px;
   margin: var(--space-16) auto 0;
