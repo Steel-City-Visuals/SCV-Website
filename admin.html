@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Admin: Steel City Visuals</title>
+  <title>Admin: Steel City Visuals</title>
   <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/admin.css?v=13" />
+  <link rel="stylesheet" href="css/admin.css?v=17" />
 </head>
 <body>
 
@@ -18,8 +18,8 @@
   <div class="screen" id="screen-login">
     <div class="login-card">
       <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="login-card__logo" />
-      <h1>Blog Admin</h1>
-      <p>Enter your password to manage blog posts.</p>
+      <h1>Admin</h1>
+      <p>Enter your password to manage the site.</p>
       <div class="login-card__error" id="login-error" role="alert"></div>
       <form id="login-form" style="display:flex; flex-direction:column; gap:12px;">
         <div class="form-field">
@@ -74,7 +74,7 @@
     <header class="admin-header">
       <div class="admin-header__left">
         <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="admin-header__logo" />
-        <span class="admin-header__badge">Blog Admin</span>
+        <span class="admin-header__badge">Admin</span>
       </div>
       <div class="admin-header__right">
         <button class="btn btn-outline btn-sm" id="new-post-btn">+ New Post</button>
@@ -90,20 +90,42 @@
       </div>
 
       <div id="list-content" hidden>
-        <div class="admin-titlebar">
-          <h2>Posts <span id="post-count"></span></h2>
-          <div class="admin-titlebar__right">
-            <div class="post-search-wrap">
-              <svg class="post-search__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              <input type="search" id="post-search" class="post-search__input" placeholder="Search posts…" autocomplete="off" />
-            </div>
-            <button class="btn btn-primary" onclick="showPostForm(null)">+ New Post</button>
-          </div>
+
+        <div class="admin-tabs" role="tablist">
+          <button class="admin-tab active" id="admin-tab-posts" role="tab" aria-selected="true" onclick="switchAdminTab('posts')">Blog Posts</button>
+          <button class="admin-tab" id="admin-tab-campaigns" role="tab" aria-selected="false" onclick="switchAdminTab('campaigns')">Campaigns</button>
         </div>
-        <div class="post-list" id="post-list"></div>
+
+        <div class="admin-tab-panel active" id="tab-panel-posts">
+          <div class="admin-titlebar">
+            <h2>Posts <span id="post-count"></span></h2>
+            <div class="admin-titlebar__right">
+              <div class="post-search-wrap">
+                <svg class="post-search__icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <input type="search" id="post-search" class="post-search__input" placeholder="Search posts…" autocomplete="off" />
+              </div>
+              <button class="btn btn-primary" onclick="showPostForm(null)">+ New Post</button>
+            </div>
+          </div>
+          <div class="post-list" id="post-list"></div>
+        </div>
+
+        <div class="admin-tab-panel" id="tab-panel-campaigns">
+          <div class="admin-titlebar">
+            <h2>Campaigns <span id="campaign-count"></span></h2>
+            <div class="admin-titlebar__right">
+              <button class="btn btn-primary" id="new-campaign-btn">+ New Campaign</button>
+            </div>
+          </div>
+          <div id="campaign-list-loading" style="text-align:center; padding:60px 0; color:#888;">
+            Loading campaigns…
+          </div>
+          <div class="post-list" id="campaign-list" hidden></div>
+        </div>
+
       </div>
 
     </main>
@@ -117,7 +139,7 @@
     <header class="admin-header">
       <div class="admin-header__left">
         <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="admin-header__logo" />
-        <span class="admin-header__badge">Blog Admin</span>
+        <span class="admin-header__badge">Admin</span>
       </div>
       <div class="admin-header__right">
         <a href="index.html" class="btn btn-ghost btn-sm">← Website</a>
@@ -309,6 +331,116 @@
     </main>
   </div>
 
+  <!-- ══════════════════════════════════════
+       SCREEN: Campaign Form
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen-campaign-form">
+
+    <header class="admin-header">
+      <div class="admin-header__left">
+        <img src="assets/images/brand/logo-white.png" alt="Steel City Visuals" class="admin-header__logo" />
+        <span class="admin-header__badge">Admin</span>
+      </div>
+      <div class="admin-header__right">
+        <a href="index.html" class="btn btn-ghost btn-sm">← Website</a>
+        <button class="btn btn-ghost btn-sm" id="logout-btn-campaign-form">Log Out</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <div class="admin-form-header">
+        <button class="back-btn" id="campaign-form-back-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M13 7H1M6 2L1 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All Campaigns
+        </button>
+        <h2 id="campaign-form-heading">New Campaign</h2>
+      </div>
+
+      <div class="form-layout">
+
+        <!-- Left: Name + Description -->
+        <div class="form-main">
+
+          <div class="form-field">
+            <label for="cf-name">Campaign Name *</label>
+            <input type="text" id="cf-name" class="title-input" placeholder="Triple Package Special" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-slug">URL Slug *</label>
+            <input type="text" id="cf-slug" placeholder="auto-generated-from-name" />
+            <span class="form-field__hint">steelcityvisuals.com/<strong id="cf-slug-preview"></strong></span>
+          </div>
+
+          <div class="form-field">
+            <label for="cf-description">Description *</label>
+            <textarea id="cf-description" rows="12" placeholder="Describe the offer…"></textarea>
+          </div>
+
+        </div>
+
+        <!-- Right: Status + Image -->
+        <div class="form-sidebar">
+
+          <!-- Save / Status -->
+          <div class="publish-bar">
+            <div class="publish-bar__top">
+              <span class="publish-bar__label">Status</span>
+              <span class="publish-bar__status" id="campaign-publish-status"></span>
+              <span class="publish-bar__live" id="campaign-publish-live" style="display:none;">
+                <span class="live-dot"></span> Live: <a id="view-campaign-link" href="#" target="_blank" rel="noopener noreferrer">View Campaign</a>
+              </span>
+            </div>
+            <label class="campaign-active-toggle">
+              <input type="checkbox" id="cf-active" checked />
+              <span>Campaign is active</span>
+            </label>
+            <div class="publish-bar__buttons">
+              <button class="btn btn-primary publish-bar__btn" id="campaign-save-btn">Save Campaign</button>
+            </div>
+            <a id="campaign-preview-btn" href="#" target="_blank" rel="noopener noreferrer" class="publish-bar__preview-link">
+              Preview campaign
+              <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M6 2H2a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V8M9 1h4m0 0v4m0-4L6 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Campaign Image -->
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">Campaign Image</div>
+
+            <div class="image-upload-wrap">
+              <div class="image-drop-zone" id="cf-image-drop-zone">
+                <input type="file" id="cf-image-file-input" accept="image/*" tabindex="-1" />
+                <p>
+                  <span>Click to upload</span> or drag &amp; drop<br />
+                  <small style="color:#666;">JPG, PNG, WebP: saved to assets/images/campaigns/</small>
+                </p>
+              </div>
+              <img src="" alt="Campaign image preview" class="image-preview" id="cf-image-preview" />
+              <div class="image-upload-status" id="cf-image-upload-status"></div>
+              <div class="form-field">
+                <label for="cf-image-path">Image Path</label>
+                <input type="text" id="cf-image-path" placeholder="assets/images/campaigns/my-image.jpg" />
+                <span class="form-field__hint">Auto-filled on upload, or type a path manually.</span>
+              </div>
+              <div class="form-field">
+                <label for="cf-image-alt">Alt Text</label>
+                <input type="text" id="cf-image-alt" placeholder="Describe the image for accessibility…" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
   <!-- ── Inline Image Modal ── -->
   <div class="modal-overlay" id="img-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="img-modal-title">
     <div class="link-modal">
@@ -416,7 +548,7 @@
   <!-- ── Toast ── -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/admin.js?v=14"></script>
+  <script src="js/admin.js?v=21"></script>
 
 </body>
 </html>

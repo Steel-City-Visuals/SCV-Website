@@ -4,6 +4,16 @@ const REPO        = 'Steel-City-Visuals/SCV-Website';
 const BRANCH      = 'main';
 const POSTS_PATH  = 'blog/posts.json';
 const IMAGES_DIR  = 'assets/images/blog/';
+const CAMPAIGNS_PATH      = 'campaigns/campaigns.json';
+const CAMPAIGN_IMAGES_DIR = 'assets/images/campaigns/';
+const SITE_ORIGIN         = 'https://www.steelcityvisuals.com';
+
+// Campaign slugs become top-level repo paths (/{slug}/index.html) — block anything
+// that would collide with an existing site path.
+const RESERVED_SLUGS = [
+  'index', 'admin', 'accessibility', 'blog', 'blog-post', 'campaign', 'campaigns',
+  'portfolio', 'privacy', 'css', 'js', 'assets', 'cname', 'readme', 'claude',
+];
 const RAW_BASE    = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/`;
 
 // Strip GitHub raw base URLs so stored HTML stays with clean relative paths
@@ -23,6 +33,10 @@ let fileSHA       = '';
 let editingSlug   = null;
 let encryptionKey = null; // CryptoKey in memory only
 let isDirty       = false;
+
+let campaigns        = [];
+let campaignsFileSHA = '';
+let campaignsLoaded  = false;
 
 // ── Utility ──
 
@@ -265,13 +279,13 @@ async function savePostsToGitHub(commitMessage) {
   fileSHA = updated.sha;
 }
 
-async function uploadImage(file) {
+async function uploadImage(file, dir = IMAGES_DIR) {
   const reader = new FileReader();
   return new Promise((resolve, reject) => {
     reader.onload = async () => {
       try {
         const base64 = reader.result.split(',')[1];
-        const path   = IMAGES_DIR + file.name;
+        const path   = dir + file.name;
         let sha;
         try {
           const existing = await ghRequest('GET', path);
@@ -287,6 +301,408 @@ async function uploadImage(file) {
     reader.readAsDataURL(file);
   });
 }
+
+// ── Dashboard Tabs ──
+
+function switchAdminTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach(btn => {
+    const active = btn.id === `admin-tab-${tab}`;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  document.querySelectorAll('.admin-tab-panel').forEach(panel => {
+    panel.classList.toggle('active', panel.id === `tab-panel-${tab}`);
+  });
+  $('new-post-btn').style.display = tab === 'posts' ? '' : 'none';
+
+  if (tab === 'campaigns' && !campaignsLoaded) {
+    campaignsLoaded = true;
+    loadCampaignsTab();
+  }
+}
+
+// ── Campaigns: GitHub API ──
+
+async function fetchCampaignsFromGitHub() {
+  try {
+    const data = await ghRequest('GET', CAMPAIGNS_PATH);
+    campaignsFileSHA = data.sha;
+    campaigns = JSON.parse(fromBase64(data.content.replace(/\n/g, '')));
+  } catch (err) {
+    if (err.message.includes('Not Found') || err.message.includes('404')) {
+      campaigns = [];
+      campaignsFileSHA = '';
+    } else {
+      throw err;
+    }
+  }
+  return campaigns;
+}
+
+async function saveCampaignsToGitHub(commitMessage) {
+  const content = toBase64(JSON.stringify(campaigns, null, 2));
+  const body = { message: commitMessage, content, branch: BRANCH };
+  if (campaignsFileSHA) body.sha = campaignsFileSHA;
+  await ghRequest('PUT', CAMPAIGNS_PATH, body);
+  const updated = await ghRequest('GET', CAMPAIGNS_PATH);
+  campaignsFileSHA = updated.sha;
+}
+
+// ── Campaign List ──
+
+async function loadCampaignsTab() {
+  $('campaign-list-loading').hidden = false;
+  $('campaign-list').hidden         = true;
+  try {
+    await fetchCampaignsFromGitHub();
+    renderCampaignList();
+    $('campaign-list-loading').hidden = true;
+    $('campaign-list').hidden         = false;
+  } catch (err) {
+    campaignsLoaded = false; // allow retry on next tab switch
+    $('campaign-list-loading').textContent = `Error: ${err.message}`;
+  }
+}
+
+function buildCampaignRow(campaign) {
+  const statusClass = campaign.active ? 'status-badge--active' : 'status-badge--inactive';
+  const statusLabel = campaign.active ? 'Active' : 'Inactive';
+  return `
+    <div class="post-row campaign-row">
+      <div class="post-row__title">${campaign.name}</div>
+      <div class="post-row__category">/${campaign.slug}</div>
+      <div class="post-row__date"><span class="status-badge ${statusClass}">${statusLabel}</span></div>
+      <div class="post-row__actions">
+        <button class="btn btn-ghost btn-sm" onclick="copyCampaignUrl('${campaign.slug}')">Copy URL</button>
+        <button class="btn btn-ghost btn-sm" onclick="showCampaignForm('${campaign.slug}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteCampaign('${campaign.slug}')">Delete</button>
+      </div>
+    </div>`;
+}
+
+function renderCampaignList() {
+  const container = $('campaign-list');
+  $('campaign-count').textContent = `${campaigns.length} campaign${campaigns.length !== 1 ? 's' : ''}`;
+
+  if (!campaigns.length) {
+    container.innerHTML = `
+      <div class="post-list__empty">
+        <p>No campaigns yet. Create your first one!</p>
+        <button class="btn btn-primary" onclick="showCampaignForm(null)">+ New Campaign</button>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = campaigns.map(buildCampaignRow).join('');
+}
+
+$('new-campaign-btn').addEventListener('click', () => showCampaignForm(null));
+
+function copyCampaignUrl(slug) {
+  const url = `${SITE_ORIGIN}/${slug}`;
+  navigator.clipboard.writeText(url)
+    .then(() => toast('Campaign URL copied to clipboard.'))
+    .catch(() => toast('Could not copy URL.', 'error'));
+}
+
+function confirmDeleteCampaign(slug) {
+  const campaign = campaigns.find(c => c.slug === slug);
+  if (!campaign) return;
+  deleteTargetSlug = slug;
+  deleteTargetType = 'campaign';
+  $('confirm-title').textContent = `"${campaign.name}"`;
+  $('modal-overlay').classList.add('active');
+}
+
+// ── Campaign Form ──
+
+let editingCampaignSlug = null;
+
+function showCampaignForm(slug, sourceCampaign = null) {
+  editingCampaignSlug = slug;
+  const campaign = slug ? campaigns.find(c => c.slug === slug) : sourceCampaign;
+
+  $('campaign-form-heading').textContent = slug ? 'Edit Campaign' : 'New Campaign';
+  $('cf-name').value        = campaign?.name        || '';
+  $('cf-slug').value        = campaign?.slug        || '';
+  $('cf-slug-preview').textContent = campaign?.slug || '';
+  $('cf-description').value = campaign?.description || '';
+  $('cf-image-path').value  = campaign?.image        || '';
+  $('cf-image-alt').value   = campaign?.imageAlt     || '';
+  $('cf-active').checked    = campaign ? campaign.active !== false : true;
+
+  const preview = $('cf-image-preview');
+  if (campaign?.image) {
+    preview.src = campaign.image.startsWith('http') ? campaign.image : RAW_BASE + campaign.image;
+    preview.classList.add('visible');
+  } else {
+    preview.classList.remove('visible');
+    preview.src = '';
+  }
+  $('cf-image-upload-status').textContent = '';
+
+  $('campaign-publish-status').textContent = '';
+  $('campaign-publish-status').className   = 'publish-bar__status';
+
+  // "Live" link — every saved campaign has a generated page, unlike blog drafts
+  $('campaign-publish-live').style.display = slug ? '' : 'none';
+  if (slug) $('view-campaign-link').href = `/${slug}`;
+
+  isDirty = false;
+  showScreen('screen-campaign-form');
+}
+
+$('cf-name').addEventListener('input', () => {
+  if (!editingCampaignSlug) {
+    const slug = slugify($('cf-name').value);
+    $('cf-slug').value               = slug;
+    $('cf-slug-preview').textContent = slug;
+    clearFieldError($('cf-slug'));
+  }
+});
+
+$('cf-slug').addEventListener('input', () => {
+  $('cf-slug-preview').textContent = $('cf-slug').value;
+});
+
+['cf-name', 'cf-slug', 'cf-description', 'cf-image-path', 'cf-image-alt'].forEach(id => {
+  $(id).addEventListener('input', e => { markDirty(); clearFieldError(e.target); });
+});
+$('cf-active').addEventListener('change', markDirty);
+
+async function saveCampaign() {
+  const name        = $('cf-name').value.trim();
+  const slug        = $('cf-slug').value.trim();
+  const description = $('cf-description').value.trim();
+  const image        = $('cf-image-path').value.trim();
+  const imageAlt      = $('cf-image-alt').value.trim();
+  const active         = $('cf-active').checked;
+
+  const requiredFields = [
+    { value: name,        id: 'cf-name'        },
+    { value: slug,        id: 'cf-slug'        },
+    { value: description, id: 'cf-description' },
+  ];
+
+  const invalid = requiredFields.filter(f => !f.value);
+  if (invalid.length) {
+    invalid.forEach(f => $(f.id).classList.add('input-error'));
+    $(invalid[0].id).closest('.form-field')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    toast('Please fill in all required fields.', 'error');
+    return;
+  }
+
+  if (!/^[a-z0-9-]+$/.test(slug)) {
+    $('cf-slug').classList.add('input-error');
+    $('cf-slug').closest('.form-field')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    toast('Slug can only contain lowercase letters, numbers, and hyphens.', 'error');
+    return;
+  }
+
+  if (RESERVED_SLUGS.includes(slug)) {
+    $('cf-slug').classList.add('input-error');
+    $('cf-slug').closest('.form-field')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    toast('That slug is reserved for the main site. Please choose another.', 'error');
+    return;
+  }
+
+  const status  = $('campaign-publish-status');
+  const saveBtn = $('campaign-save-btn');
+  status.textContent = 'Saving…';
+  status.className   = 'publish-bar__status saving';
+  saveBtn.disabled    = true;
+
+  const applyCampaign = (campaign) => {
+    if (editingCampaignSlug) {
+      const idx = campaigns.findIndex(c => c.slug === editingCampaignSlug);
+      if (idx !== -1) campaigns[idx] = campaign; else campaigns.push(campaign);
+    } else {
+      campaigns.unshift(campaign);
+    }
+  };
+
+  try {
+    await fetchCampaignsFromGitHub();
+
+    const campaign = { slug, name, description, image, imageAlt, active };
+
+    if (!editingCampaignSlug && campaigns.some(c => c.slug === slug)) {
+      toast('A campaign with this slug already exists.', 'error');
+      status.textContent = '';
+      saveBtn.disabled    = false;
+      return;
+    }
+
+    applyCampaign(campaign);
+
+    const action = editingCampaignSlug ? 'Update' : 'Add';
+    try {
+      await saveCampaignsToGitHub(`${action} campaign: ${name}`);
+    } catch (saveErr) {
+      // SHA conflict — re-fetch and retry once
+      if (saveErr.message.includes('does not match') || saveErr.message.includes('409')) {
+        await fetchCampaignsFromGitHub();
+        applyCampaign(campaign);
+        await saveCampaignsToGitHub(`${action} campaign: ${name}`);
+      } else {
+        throw saveErr;
+      }
+    }
+
+    isDirty = false;
+    status.textContent = 'Saved!';
+    status.className   = 'publish-bar__status saved';
+    toast(`"${name}" saved.`);
+
+    await publishCampaignPage(campaign, editingCampaignSlug);
+
+    setTimeout(() => { renderCampaignList(); showScreen('screen-list'); }, 1000);
+
+  } catch (err) {
+    status.textContent = 'Save failed.';
+    status.className   = 'publish-bar__status error';
+    toast(`Save failed: ${err.message}`, 'error');
+  } finally {
+    saveBtn.disabled = false;
+  }
+}
+
+// ── Campaign Static Page Generation ──
+//
+// Each campaign gets a real committed file at /{slug}/index.html so the shared
+// link returns a genuine HTTP 200 with baked <meta og:*> tags — link-preview
+// crawlers (iMessage, Slack, Facebook, etc.) don't execute JS, so the tags have
+// to be present in the raw HTML, not just set client-side. The visible page
+// content is still rendered client-side by js/campaign.js from campaigns.json,
+// so editing a campaign's copy only requires updating the JSON — this generated
+// file only needs to be regenerated when the slug or shareable meta data changes,
+// which is what happens on every save anyway.
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function setMetaAttr(html, id, value) {
+  const re = new RegExp(`(<meta[^>]*id="${id}"[^>]*content=")[^"]*(")`, 'i');
+  return html.replace(re, `$1${value}$2`);
+}
+
+async function buildCampaignPageHTML(campaign) {
+  const res = await fetch(`campaign.html?t=${Date.now()}`);
+  if (!res.ok) throw new Error('Could not load the campaign page template.');
+  let html = await res.text();
+
+  // Rewrite relative asset/nav paths to root-absolute so the page still works
+  // when committed one directory deep (e.g. /triplepackage/index.html)
+  html = html.replace(
+    /((?:src|href)=")(?!https?:\/\/|\/|#|mailto:|tel:|data:)([^"]+)"/g,
+    '$1/$2"'
+  );
+
+  const name        = escapeHtml(campaign.name);
+  const description = escapeHtml(campaign.description);
+  const pageUrl      = `${SITE_ORIGIN}/${campaign.slug}`;
+  const imageUrl      = campaign.image
+    ? (campaign.image.startsWith('http') ? campaign.image : `${SITE_ORIGIN}/${campaign.image}`)
+    : '';
+
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${name}: Steel City Visuals</title>`);
+  html = setMetaAttr(html, 'meta-description', description);
+  html = setMetaAttr(html, 'og-title',         name);
+  html = setMetaAttr(html, 'og-description',   description);
+  html = setMetaAttr(html, 'og-image',         imageUrl);
+  html = setMetaAttr(html, 'og-url',           pageUrl);
+
+  return html;
+}
+
+async function publishCampaignPage(campaign, oldSlug) {
+  try {
+    const html = await buildCampaignPageHTML(campaign);
+    const path = `${campaign.slug}/index.html`;
+    let sha;
+    try {
+      const existing = await ghRequest('GET', path);
+      sha = existing.sha;
+    } catch {}
+    const body = { message: `Publish campaign page: ${campaign.name}`, content: toBase64(html), branch: BRANCH };
+    if (sha) body.sha = sha;
+    await ghRequest('PUT', path, body);
+
+    // Slug changed on an existing campaign — remove the stale generated page
+    if (oldSlug && oldSlug !== campaign.slug) {
+      await deleteCampaignPage(oldSlug);
+    }
+  } catch (err) {
+    toast(`Campaign saved, but the live page failed to publish: ${err.message}`, 'error');
+  }
+}
+
+async function deleteCampaignPage(slug) {
+  try {
+    const path = `${slug}/index.html`;
+    const file = await ghRequest('GET', path);
+    await ghRequest('DELETE', path, {
+      message: `Delete campaign page: ${slug}`,
+      sha: file.sha,
+      branch: BRANCH,
+    });
+  } catch (err) {
+    console.warn('Could not delete campaign page:', err.message);
+  }
+}
+
+$('campaign-save-btn').addEventListener('click', saveCampaign);
+$('campaign-form-back-btn').addEventListener('click', () =>
+  confirmDiscard(() => { renderCampaignList(); showScreen('screen-list'); })
+);
+$('logout-btn-campaign-form').addEventListener('click', handleLogout);
+
+// ── Campaign Image Upload ──
+
+const campaignImageInput = $('cf-image-file-input');
+const campaignDropZone   = $('cf-image-drop-zone');
+
+async function processCampaignImageUpload(file) {
+  const status  = $('cf-image-upload-status');
+  const preview = $('cf-image-preview');
+  status.textContent = 'Uploading…';
+  status.className   = 'image-upload-status uploading';
+  const localPreviewUrl = URL.createObjectURL(file);
+  try {
+    const path = await uploadImage(file, CAMPAIGN_IMAGES_DIR);
+    $('cf-image-path').value = path;
+    preview.src = localPreviewUrl;
+    preview.classList.add('visible');
+    status.textContent = 'Image uploaded!';
+    status.className   = 'image-upload-status success';
+    toast('Image uploaded successfully.');
+    markDirty();
+  } catch (err) {
+    status.textContent = `Upload failed: ${err.message}`;
+    status.className   = 'image-upload-status error';
+    toast('Image upload failed.', 'error');
+  }
+}
+
+campaignImageInput.addEventListener('change', async () => {
+  const file = campaignImageInput.files[0];
+  if (file) await processCampaignImageUpload(file);
+});
+
+campaignDropZone.addEventListener('dragover', e => { e.preventDefault(); campaignDropZone.classList.add('dragover'); });
+campaignDropZone.addEventListener('dragleave', () => campaignDropZone.classList.remove('dragover'));
+campaignDropZone.addEventListener('drop', async e => {
+  e.preventDefault();
+  campaignDropZone.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) await processCampaignImageUpload(file);
+});
 
 // ── Post List ──
 
@@ -571,11 +987,13 @@ function handleDraft()   { return savePost(false); }
 // ── Delete ──
 
 let deleteTargetSlug = null;
+let deleteTargetType = 'post'; // 'post' | 'campaign'
 
 function confirmDelete(slug) {
   const post = posts.find(p => p.slug === slug);
   if (!post) return;
   deleteTargetSlug = slug;
+  deleteTargetType = 'post';
   $('confirm-title').textContent = `"${post.title}"`;
   $('modal-overlay').classList.add('active');
 }
@@ -602,8 +1020,36 @@ $('modal-confirm').addEventListener('click', async () => {
   $('modal-overlay').classList.remove('active');
   if (!deleteTargetSlug) return;
   const slug = deleteTargetSlug;
-  const post = posts.find(p => p.slug === slug);
+  const type = deleteTargetType;
   deleteTargetSlug = null;
+
+  if (type === 'campaign') {
+    const campaign = campaigns.find(c => c.slug === slug);
+    try {
+      await fetchCampaignsFromGitHub();
+      const imagePath = campaign?.image;
+      campaigns = campaigns.filter(c => c.slug !== slug);
+      await saveCampaignsToGitHub(`Delete campaign: ${campaign?.name || slug}`);
+
+      // Delete image only if it lives in the campaign images folder and no other campaign references it
+      if (imagePath && imagePath.startsWith(CAMPAIGN_IMAGES_DIR)) {
+        const sharedByOther = campaigns.some(c => c.image === imagePath);
+        if (!sharedByOther) {
+          await deleteImageFromGitHub(imagePath);
+        }
+      }
+
+      await deleteCampaignPage(slug);
+
+      renderCampaignList();
+      toast('Campaign deleted.');
+    } catch (err) {
+      toast(err.message, 'error');
+    }
+    return;
+  }
+
+  const post = posts.find(p => p.slug === slug);
   try {
     await fetchPostsFromGitHub();
     const imagePath = post?.image;
@@ -980,6 +1426,23 @@ $('preview-btn').addEventListener('click', e => {
   };
   localStorage.setItem('scv_preview_draft', JSON.stringify(previewData));
   window.open(`blog-post.html?slug=${slug}&preview=1`, '_blank', 'noopener,noreferrer');
+});
+
+$('campaign-preview-btn').addEventListener('click', e => {
+  e.preventDefault();
+  const slug = $('cf-slug').value.trim() || editingCampaignSlug;
+  if (!slug) { toast('Add a URL slug before previewing.', 'error'); return; }
+
+  const previewData = {
+    slug,
+    name:        $('cf-name').value.trim()        || '(Untitled Campaign)',
+    description: $('cf-description').value.trim(),
+    image:       $('cf-image-path').value.trim(),
+    imageAlt:    $('cf-image-alt').value.trim(),
+    active:      $('cf-active').checked,
+  };
+  localStorage.setItem('scv_campaign_preview_draft', JSON.stringify(previewData));
+  window.open(`campaign.html?slug=${slug}&preview=1`, '_blank', 'noopener,noreferrer');
 });
 
 $('login-form').addEventListener('submit', handleLogin);
