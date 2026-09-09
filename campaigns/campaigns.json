@@ -5,6 +5,6 @@
     "description": "Triple Parakeet Shoes",
     "image": "assets/images/campaigns/pnc_aerial_drone.jpg",
     "imageAlt": "PNC Park",
-    "active": false
+    "active": true
   }
 ]
