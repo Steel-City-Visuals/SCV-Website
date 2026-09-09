@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "slug": "triple-play-package",
+    "name": "Triple Play Package",
+    "description": "Triple Parakeet Shoes",
+    "image": "assets/images/campaigns/pnc_aerial_drone.jpg",
+    "imageAlt": "PNC Park",
+    "active": true
+  }
+]
