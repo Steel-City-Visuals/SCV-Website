@@ -22,7 +22,11 @@ function showCoupleCards() {
   backBtn.hidden      = true;
   couplesGrid.hidden  = false;
   emptyMsg.hidden     = true;
-  setGridColumnSpan(coupleCards);
+  // No gridColumn override here — the couple cards are never filtered/hidden,
+  // so the responsive `:first-child` CSS rule already sizes the first card
+  // correctly at every breakpoint. Forcing it inline (like the filterable
+  // grid below needs to) overrode the mobile "span 1" rule and pushed cards
+  // off-screen on small viewports.
 }
 
 function showGrid(filter, coupleSlug) {
