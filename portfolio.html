@@ -97,6 +97,134 @@
     <!-- ── Portfolio Grid ── -->
     <section class="portfolio-grid-section">
       <div class="container">
+
+        <!-- Wedding couples — shown instead of the grid when the Weddings filter is active -->
+        <button class="portfolio-back" id="wedding-back" hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          All Couples
+        </button>
+
+        <div class="portfolio-grid" id="wedding-couples-grid" hidden>
+
+          <div class="portfolio-item" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-1.jpg"
+                alt="Abbey & Dennis wedding photography cover"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                  <div class="portfolio-item__meta">8 photos</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View gallery">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-3.jpg"
+                alt="Andrea & Jeremy wedding photography cover"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                  <div class="portfolio-item__meta">7 photos</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View gallery">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-1.jpg"
+                alt="Joellyn & Andrew wedding photography cover"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                  <div class="portfolio-item__meta">8 photos</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View gallery">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-6.jpg"
+                alt="Katie & Regis wedding photography cover"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                  <div class="portfolio-item__meta">7 photos</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View gallery">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-2.jpg"
+                alt="Keli & Keaton wedding photography cover"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
+                  <div class="portfolio-item__meta">6 photos</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View gallery">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         <div class="portfolio-grid" id="portfolio-grid">
 
           <!-- Aerial images — add data-category to control filtering -->
@@ -466,6 +594,800 @@
                 <div class="portfolio-item__info">
                   <div class="portfolio-item__category">Aerial</div>
                   <div class="portfolio-item__title">Point State Park – Wide</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weddings — grouped by couple -->
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-1.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-2.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-3.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-4.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-5.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-6.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-7.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="abbey-dennis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/abbey-dennis-8.jpg"
+                alt="Abbey & Dennis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Abbey & Dennis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-1.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-2.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-3.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-4.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-5.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-6.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="andrea-jeremy">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/andrea-jeremy-7.jpg"
+                alt="Andrea & Jeremy wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Andrea & Jeremy</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-1.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-2.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-3.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-4.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-5.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-6.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-7.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="joellyn-andrew">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/joellyn-andrew-8.jpg"
+                alt="Joellyn & Andrew wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Joellyn & Andrew</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-1.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-2.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-3.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-4.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-5.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-6.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="katie-regis">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/katie-regis-7.jpg"
+                alt="Katie & Regis wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Katie & Regis</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-1.jpg"
+                alt="Keli & Keaton wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-2.jpg"
+                alt="Keli & Keaton wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-3.jpg"
+                alt="Keli & Keaton wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-4.jpg"
+                alt="Keli & Keaton wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-5.jpg"
+                alt="Keli & Keaton wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
+                </div>
+                <div class="portfolio-item__zoom" aria-label="View full size">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portfolio-item" data-category="wedding" data-couple="keli-keaton">
+            <div class="portfolio-item__inner">
+              <img
+                src="assets/images/portfolio/wedding/keli-keaton-6.jpg"
+                alt="Keli & Keaton wedding photography"
+                class="portfolio-item__img"
+                loading="lazy"
+              />
+              <div class="portfolio-item__overlay">
+                <div class="portfolio-item__info">
+                  <div class="portfolio-item__category">Wedding</div>
+                  <div class="portfolio-item__title">Keli & Keaton</div>
                 </div>
                 <div class="portfolio-item__zoom" aria-label="View full size">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">

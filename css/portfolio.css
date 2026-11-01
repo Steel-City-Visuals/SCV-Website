@@ -140,6 +140,38 @@
   color: var(--color-text);
 }
 
+.portfolio-item__meta {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.7);
+  margin-top: var(--space-1);
+}
+
+/* ── Wedding "back to couples" button ── */
+.portfolio-back {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  background: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.portfolio-back:not([hidden]) {
+  display: inline-flex;
+}
+
+.portfolio-back:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
 .portfolio-item__zoom {
   width: 40px;
   height: 40px;

@@ -1,35 +1,70 @@
 // ── Portfolio: Filter + Lightbox ──
 
 // ── Filter ──
-const filters   = document.querySelectorAll('.portfolio-filter');
-const items     = document.querySelectorAll('.portfolio-item');
-const emptyMsg  = document.getElementById('portfolio-empty');
-const grid      = document.getElementById('portfolio-grid');
+const filters      = document.querySelectorAll('.portfolio-filter');
+const grid         = document.getElementById('portfolio-grid');
+const items        = document.querySelectorAll('#portfolio-grid .portfolio-item');
+const emptyMsg     = document.getElementById('portfolio-empty');
+const couplesGrid  = document.getElementById('wedding-couples-grid');
+const coupleCards  = document.querySelectorAll('#wedding-couples-grid .portfolio-item');
+const backBtn      = document.getElementById('wedding-back');
+
+function setGridColumnSpan(collection) {
+  const visibleItems = [...collection].filter(i => !i.classList.contains('hidden'));
+  collection.forEach(i => i.style.gridColumn = '');
+  if (visibleItems.length > 0) {
+    visibleItems[0].style.gridColumn = visibleItems.length > 1 ? 'span 2' : 'span 1';
+  }
+}
+
+function showCoupleCards() {
+  grid.hidden        = true;
+  backBtn.hidden      = true;
+  couplesGrid.hidden  = false;
+  emptyMsg.hidden     = true;
+  setGridColumnSpan(coupleCards);
+}
+
+function showGrid(filter, coupleSlug) {
+  couplesGrid.hidden = true;
+  grid.hidden        = false;
+  backBtn.hidden      = !coupleSlug;
+
+  let visible = 0;
+  items.forEach(item => {
+    const match = coupleSlug
+      ? item.dataset.couple === coupleSlug
+      : (filter === 'all' || item.dataset.category === filter);
+    item.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+
+  setGridColumnSpan(items);
+  emptyMsg.hidden = visible > 0;
+}
 
 filters.forEach(btn => {
   btn.addEventListener('click', () => {
-    // Update active button
     filters.forEach(f => f.classList.remove('active'));
     btn.classList.add('active');
 
     const filter = btn.dataset.filter;
-    let visible = 0;
-
-    items.forEach(item => {
-      const match = filter === 'all' || item.dataset.category === filter;
-      item.classList.toggle('hidden', !match);
-      if (match) visible++;
-    });
-
-    // Reset first-child span when filtering
-    const visibleItems = [...items].filter(i => !i.classList.contains('hidden'));
-    items.forEach(i => i.style.gridColumn = '');
-    if (visibleItems.length > 0) {
-      visibleItems[0].style.gridColumn = visibleItems.length > 1 ? 'span 2' : 'span 1';
+    if (filter === 'wedding') {
+      showCoupleCards();
+    } else {
+      showGrid(filter);
     }
-
-    emptyMsg.hidden = visible > 0;
   });
+});
+
+coupleCards.forEach(card => {
+  card.addEventListener('click', () => {
+    showGrid('wedding', card.dataset.couple);
+  });
+});
+
+backBtn.addEventListener('click', () => {
+  showCoupleCards();
 });
 
 // ── Lightbox ──
